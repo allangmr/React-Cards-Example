@@ -1,0 +1,194 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.step-navigation {
+  position: fixed;
+  bottom: 0;
+  left: $sidebar-width;
+  right: 0;
+  height: $step-navigation-height;
+  background: rgba($white, 0.95);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid $border-color;
+  z-index: 50;
+  box-shadow: $shadow-lg;
+
+  &__container {
+    height: 100%;
+    padding: 0 $spacing-xl;
+    @include flex(row, center, space-between);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__info {
+    @include flex(row, center, flex-start);
+    gap: $spacing-xl;
+  }
+
+  &__step-counter {
+    font-size: $font-size-lg;
+    font-weight: 600;
+    color: $text-dark;
+  }
+
+  &__price {
+    @include flex(row, center, flex-start);
+    gap: $spacing-sm;
+    padding: $spacing-sm $spacing-md;
+    background: $background-light;
+    border-radius: $border-radius-md;
+  }
+
+  &__price-label {
+    font-size: $font-size-base;
+    color: $text-light;
+  }
+
+  &__price-value {
+    font-size: $font-size-lg;
+    font-weight: 700;
+    color: $accent-color;
+  }
+
+  &__actions {
+    @include flex(row, center, flex-end);
+    gap: $spacing-md;
+  }
+
+  &__button {
+    @include button-base;
+    padding: $spacing-md $spacing-lg;
+    font-weight: 600;
+    min-width: 120px;
+
+    &--primary {
+      background: $secondary-color;
+      color: $white;
+
+      &:hover:not(:disabled) {
+        background: darken($secondary-color, 10%);
+        transform: translateY(-2px);
+        box-shadow: $shadow-md;
+      }
+
+      &:focus {
+        outline: 2px solid $secondary-color;
+        outline-offset: 2px;
+      }
+    }
+
+    &--secondary {
+      background: transparent;
+      color: $text-dark;
+      border: 2px solid $border-color;
+
+      &:hover:not(:disabled) {
+        background: $background-light;
+        border-color: $text-light;
+      }
+
+      &:focus {
+        outline: 2px solid $text-dark;
+        outline-offset: 2px;
+      }
+    }
+
+    &--success {
+      background: $success-color;
+      color: $white;
+      min-width: 200px;
+
+      &:hover:not(:disabled) {
+        background: darken($success-color, 10%);
+        transform: translateY(-2px);
+        box-shadow: $shadow-md;
+      }
+
+      &:focus {
+        outline: 2px solid $success-color;
+        outline-offset: 2px;
+      }
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none !important;
+      box-shadow: none !important;
+    }
+  }
+
+  // Responsivo
+  @include responsive(md) {
+    &__container {
+      padding: 0 $spacing-lg;
+    }
+
+    &__info {
+      gap: $spacing-lg;
+    }
+
+    &__actions {
+      gap: $spacing-sm;
+    }
+
+    &__button {
+      padding: $spacing-sm $spacing-md;
+      min-width: 100px;
+      font-size: $font-size-sm;
+
+      &--success {
+        min-width: 150px;
+      }
+    }
+  }
+
+  // Para pantallas pequeñas
+  @media (max-width: $breakpoint-md) {
+    left: 0;
+    
+    &__container {
+      @include flex(column, center, center);
+      gap: $spacing-md;
+      padding: $spacing-md;
+    }
+
+    &__info {
+      @include flex(column, center, center);
+      gap: $spacing-sm;
+      text-align: center;
+    }
+
+    &__actions {
+      @include flex(row, center, center);
+      gap: $spacing-sm;
+      width: 100%;
+    }
+
+    &__button {
+      flex: 1;
+      min-width: auto;
+      padding: $spacing-sm;
+      font-size: $font-size-sm;
+
+      &--success {
+        min-width: auto;
+      }
+    }
+  }
+
+  // Animaciones de entrada
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  animation: slideUp 0.3s ease-out;
+} 

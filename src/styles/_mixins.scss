@@ -1,0 +1,144 @@
+@use 'variables' as *;
+
+// Mixin para centrar flex
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Mixin para flex con dirección personalizable
+@mixin flex($direction: row, $align: stretch, $justify: flex-start) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+}
+
+// Mixin para media queries - compatible con Figma
+@mixin media-query($breakpoint, $type: min) {
+  @if $breakpoint == lg and $type == min {
+    @media (min-width: $breakpoint-lg) { @content; }
+  }
+  @if $breakpoint == md and $type == min {
+    @media (min-width: $breakpoint-md) { @content; }
+  }
+  @if $breakpoint == sm and $type == min {
+    @media (min-width: $breakpoint-sm) { @content; }
+  }
+  @if $breakpoint == xl and $type == min {
+    @media (min-width: $breakpoint-xl) { @content; }
+  }
+}
+
+// Mixin para botones
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-sm $spacing-md;
+  border: none;
+  border-radius: $border-radius-md;
+  font-family: $font-family-primary;
+  font-size: $font-size-base;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+// Mixin para cards
+@mixin card {
+  background: $white;
+  border-radius: $border-radius-lg;
+  box-shadow: $shadow-sm;
+  transition: box-shadow 0.2s ease;
+  
+  &:hover {
+    box-shadow: $shadow-md;
+  }
+}
+
+// Mixin para option card con estados interactivos
+@mixin option-card {
+  @include card;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: $shadow-lg;
+    transform: translateY(-2px);
+  }
+
+  &:focus-within {
+    outline: none;
+    box-shadow: 0 0 0 4px rgba($secondary-color, 0.1);
+  }
+
+  &.selected,
+  &[data-selected="true"] {
+    border-color: $secondary-color;
+    box-shadow: 0 0 0 4px rgba($secondary-color, 0.1);
+  }
+
+  &.active {
+    transform: translateY(0);
+    box-shadow: $shadow-md;
+  }
+}
+
+// Mixin para texto truncado
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Mixin para texto de múltiples líneas truncado
+@mixin text-truncate-multiline($lines: 2) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+// Mixin para responsivo (mantenemos compatibilidad)
+@mixin responsive($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  }
+  @if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  }
+  @if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  }
+  @if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  }
+}
+
+// Mixin para aspect ratio
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  
+  &::before {
+    content: '';
+    display: block;
+    padding-top: percentage($height / $width);
+  }
+  
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+} 

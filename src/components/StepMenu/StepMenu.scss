@@ -1,0 +1,220 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.step-menu {
+  width: $sidebar-width;
+  height: 100vh;
+  background: linear-gradient(135deg, $primary-color 0%, darken($primary-color, 10%) 100%);
+  color: $white;
+  @include flex(column, stretch, flex-start);
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  overflow-y: auto;
+
+  &__header {
+    padding: $spacing-xl;
+    border-bottom: 1px solid rgba($white, 0.1);
+  }
+
+  &__title {
+    font-size: $font-size-xxxl;
+    font-weight: 700;
+    margin: 0 0 $spacing-sm 0;
+    color: $white;
+  }
+
+  &__subtitle {
+    font-size: $font-size-base;
+    color: rgba($white, 0.8);
+    margin: 0;
+  }
+
+  &__nav {
+    flex: 1;
+    padding: $spacing-xl $spacing-lg;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__item {
+    position: relative;
+    margin-bottom: $spacing-md;
+  }
+
+  &__button {
+    width: 100%;
+    background: transparent;
+    border: none;
+    color: $white;
+    cursor: pointer;
+    @include flex(row, flex-start, flex-start);
+    gap: $spacing-md;
+    padding: $spacing-lg;
+    border-radius: $border-radius-lg;
+    transition: all 0.3s ease;
+    text-align: left;
+
+    &:hover:not(:disabled) {
+      background: rgba($white, 0.1);
+      transform: translateX(4px);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &--current {
+      background: rgba($secondary-color, 0.2);
+      border: 2px solid $secondary-color;
+      
+      .step-menu__step-indicator {
+        background: $secondary-color;
+        color: $white;
+        box-shadow: 0 0 20px rgba($secondary-color, 0.4);
+      }
+    }
+
+    &--completed {
+      .step-menu__step-indicator {
+        background: $success-color;
+        color: $white;
+      }
+    }
+
+    &:focus {
+      outline: 2px solid $secondary-color;
+      outline-offset: 2px;
+    }
+  }
+
+  &__step-indicator {
+    width: 40px;
+    height: 40px;
+    border-radius: $border-radius-full;
+    background: rgba($white, 0.2);
+    @include flex-center;
+    font-weight: 600;
+    font-size: $font-size-lg;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+  }
+
+  &__step-number {
+    font-weight: 700;
+  }
+
+  &__step-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__step-title {
+    font-size: $font-size-lg;
+    font-weight: 600;
+    margin: 0 0 $spacing-xs 0;
+    color: $white;
+  }
+
+  &__step-description {
+    font-size: $font-size-sm;
+    color: rgba($white, 0.8);
+    margin: 0;
+    line-height: 1.4;
+    @include text-truncate-multiline(2);
+  }
+
+  &__connector {
+    position: absolute;
+    left: 40px;
+    top: 100%;
+    width: 2px;
+    height: $spacing-md;
+    background: rgba($white, 0.2);
+    transition: all 0.3s ease;
+
+    &--completed {
+      background: $success-color;
+    }
+  }
+
+  &__footer {
+    padding: $spacing-xl;
+    border-top: 1px solid rgba($white, 0.1);
+  }
+
+  &__progress {
+    @include flex(column, stretch, flex-start);
+    gap: $spacing-sm;
+  }
+
+  &__progress-label {
+    font-size: $font-size-sm;
+    color: rgba($white, 0.8);
+    text-align: center;
+  }
+
+  &__progress-bar {
+    height: 8px;
+    background: rgba($white, 0.2);
+    border-radius: $border-radius-sm;
+    overflow: hidden;
+  }
+
+  &__progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, $secondary-color 0%, $success-color 100%);
+    border-radius: $border-radius-sm;
+    transition: width 0.5s ease;
+  }
+
+  // Responsivo
+  @include responsive(md) {
+    &__title {
+      font-size: $font-size-xxxl;
+    }
+
+    &__step-title {
+      font-size: $font-size-xl;
+    }
+  }
+
+  // Para pantallas pequeñas, hacer el menú colapsable
+  @media (max-width: $breakpoint-md) {
+    width: 100%;
+    height: auto;
+    position: relative;
+    
+    &__nav {
+      padding: $spacing-lg;
+    }
+    
+    &__list {
+      @include flex(row, stretch, flex-start);
+      overflow-x: auto;
+      padding-bottom: $spacing-sm;
+    }
+    
+    &__item {
+      flex-shrink: 0;
+      margin-right: $spacing-md;
+      margin-bottom: 0;
+    }
+    
+    &__button {
+      @include flex(column, center, center);
+      min-width: 120px;
+      text-align: center;
+    }
+    
+    &__connector {
+      display: none;
+    }
+  }
+} 

@@ -52,6 +52,14 @@ const meta: Meta<typeof OptionCard> = {
         defaultValue: { summary: "'radio'" }
       }
     },
+    tag: {
+      control: 'text',
+      description: 'Optional tag to display on the card',
+      table: {
+        type: { summary: 'string | undefined' },
+        defaultValue: { summary: 'undefined' }
+      }
+    },
   },
 };
 
@@ -128,8 +136,10 @@ export const SquareImage: Story = {
       image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=400&fit=crop',
       imageType: 'square',
     },
+
     isSelected: false,
     selectType: 'radio',
+    tag: "MOST POPULAR"
   },
   parameters: {
     docs: {
@@ -162,11 +172,44 @@ export const WideImage: Story = {
   }
 };
 
+export const WithTag: Story = {
+  args: {
+    option: sampleOptionCard,
+    isSelected: false,
+    selectType: 'radio',
+    tag: 'Popular',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'OptionCard with tag displayed'
+      }
+    }
+  }
+};
+
+export const WithTagSelected: Story = {
+  args: {
+    option: sampleOptionCard,
+    isSelected: true,
+    selectType: 'checkbox',
+    tag: 'Best Value',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Selected OptionCard with tag'
+      }
+    }
+  }
+};
+
 export const InteractivePlayground: Story = {
   args: {
     option: sampleOptionCard,
     isSelected: false,
     selectType: 'radio',
+    tag: 'New',
   },
   parameters: {
     docs: {

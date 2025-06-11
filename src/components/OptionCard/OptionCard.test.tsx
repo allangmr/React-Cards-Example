@@ -168,4 +168,29 @@ describe('OptionCard', () => {
     expect(card).toHaveAttribute('data-selected', 'true');
     expect(card).toBeInTheDocument();
   });
+
+  it('renders tag when tag prop is provided', () => {
+    render(
+      <OptionCard
+        option={mockOption}
+        isSelected={false}
+        selectType="radio"
+        tag="Popular"
+      />
+    );
+
+    expect(screen.getByText('Popular')).toBeInTheDocument();
+  });
+
+  it('does not render tag when tag prop is not provided', () => {
+    render(
+      <OptionCard
+        option={mockOption}
+        isSelected={false}
+        selectType="radio"
+      />
+    );
+
+    expect(screen.queryByText('Popular')).not.toBeInTheDocument();
+  });
 }); 

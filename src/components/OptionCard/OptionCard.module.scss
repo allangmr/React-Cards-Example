@@ -111,7 +111,6 @@
 }
 
 .title {
-  order: 3;
   color: var(--Colors-Text-Primary, #0D0D0D);
   font-family: "Open Sans", sans-serif;
   font-size: 13px;
@@ -122,13 +121,38 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  flex: 1;
   margin: 0;
   cursor: pointer;
 }
 
 .description {
   display: none;
+}
+
+.tag {
+  display: inline-flex;
+  padding: 2px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 4px;
+  background: #007BAB;
+  color: #FFF;
+  font-family: "Open Sans", sans-serif;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 1;
+  align-self: flex-start;
+  margin-bottom: 6px;
+}
+
+.content {
+  order: 3;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 4px;
 }
 
 @include mixins.media-query(lg, min) {
@@ -144,6 +168,7 @@
                 0px 3px 3px 0px var(--color-shadow-black-6, rgba(29, 33, 48, 0.06)), 
                 0px 1px 1px 0px var(--color-shadow-black-8, rgba(29, 33, 48, 0.08)), 
                 0px 0px 0px 0px var(--color-shadow-black-10, rgba(29, 33, 48, 0.10));
+    position: relative;
     
     &.square {
       padding: 0 0 16px 0;
@@ -200,17 +225,7 @@
     align-self: start;
   }
   
-  .title {
-    grid-column: 2;
-    grid-row: 2;
-    font-size: var(--Type-body-sm, 14px);
-    line-height: 120%;
-    -webkit-line-clamp: unset;
-    display: block;
-    justify-self: start;
-    align-self: start;
-    margin-top: 2px;
-  }
+
   
   .optionCard.square,
   .optionCard.wide {
@@ -218,7 +233,7 @@
       margin-left: 16px;
     }
     
-    .title {
+    .content {
       margin-right: 16px;
     }
     
@@ -243,5 +258,32 @@
     line-height: 120%;
     letter-spacing: 0.28px;
     margin: 0;
+  }
+  
+  .tag {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    margin-bottom: 0;
+    z-index: 10;
+    align-self: flex-start;
+  }
+  
+  .content {
+    /* In desktop, this container adjusts to grid layout */
+    grid-column: 2;
+    grid-row: 2;
+    display: block;
+    gap: 0;
+  }
+  
+  .title {
+    font-size: var(--Type-body-sm, 14px);
+    line-height: 120%;
+    -webkit-line-clamp: unset;
+    display: block;
+    justify-self: start;
+    align-self: start;
+    margin-top: 2px;
   }
 } 

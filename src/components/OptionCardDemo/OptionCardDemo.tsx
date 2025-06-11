@@ -8,6 +8,7 @@ interface Option {
   description: string;
   image: string;
   imageType: 'rounded' | 'square' | 'wide';
+  tag?: string;
 }
 
 const sampleOptions: Option[] = [
@@ -16,7 +17,8 @@ const sampleOptions: Option[] = [
     title: 'Premium Digital Lock',
     description: 'Electronic lock with digital code, fingerprint, and RFID card. Maximum security for your home with advanced technology.',
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop',
-    imageType: 'rounded'
+    imageType: 'rounded',
+    tag: 'Most Popular'
   },
   {
     id: 'lock-biometric',
@@ -30,7 +32,8 @@ const sampleOptions: Option[] = [
     title: 'Smart Lock Pro',
     description: 'Wi-Fi enabled smart lock with mobile app control. Remote access and monitoring capabilities.',
     image: 'https://images.unsplash.com/photo-1556075798-4825dfaaf498?w=400&h=400&fit=crop',
-    imageType: 'rounded'
+    imageType: 'rounded',
+    tag: 'New'
   }
 ];
 
@@ -40,7 +43,8 @@ const materialOptions: Option[] = [
     title: 'Stainless Steel',
     description: 'Corrosion resistant, ideal for outdoors. Durable and modern finish.',
     image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=400&h=400&fit=crop',
-    imageType: 'square'
+    imageType: 'square',
+    tag: 'Premium'
   },
   {
     id: 'option-aluminum',
@@ -54,7 +58,8 @@ const materialOptions: Option[] = [
     title: 'Bronze Finish',
     description: 'Classic elegant appearance with excellent weather resistance.',
     image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=400&h=400&fit=crop',
-    imageType: 'square'
+    imageType: 'square',
+    tag: 'Best Value'
   }
 ];
 
@@ -152,6 +157,7 @@ const OptionCardDemo: React.FC = () => {
               option={option}
               isSelected={selectedLock === option.id}
               selectType="radio"
+              tag={option.tag}
             />
           ))}
         </div>
@@ -173,6 +179,7 @@ const OptionCardDemo: React.FC = () => {
               option={option}
               isSelected={selectedOptions.includes(option.id)}
               selectType="checkbox"
+              tag={option.tag}
             />
           ))}
         </div>
@@ -196,6 +203,7 @@ const OptionCardDemo: React.FC = () => {
               option={option}
               isSelected={selectedSecurity.includes(option.id)}
               selectType="checkbox"
+              tag={option.tag}
             />
           ))}
         </div>

@@ -14,6 +14,7 @@ export interface OptionCardProps {
   option: Option;
   isSelected: boolean;
   selectType: 'radio' | 'checkbox';
+  tag?: string;
 }
 
 /**
@@ -30,7 +31,8 @@ function getIconName(selectType: 'radio' | 'checkbox', isSelected: boolean): 'Ra
 function OptionCard({
   option,
   isSelected,
-  selectType
+  selectType,
+  tag
 }: OptionCardProps) {
   if (!option) {
     return null;
@@ -83,12 +85,21 @@ function OptionCard({
           alt={option.title} 
         />
       </div>
-      <label 
-        htmlFor={inputId}
-        className={styles.title}
-      >
-        {option.title}
-      </label>
+      
+      <div className={styles.content}>
+        {tag && (
+          <div className={styles.tag}>
+            {tag}
+          </div>
+        )}
+        <label 
+          htmlFor={inputId}
+          className={styles.title}
+        >
+          {option.title}
+        </label>
+      </div>
+      
       <p className={styles.description}>
         {option.description}
       </p>

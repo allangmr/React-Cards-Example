@@ -18,32 +18,31 @@ export interface OptionCardProps {
   onSelect: (optionId: string) => void;
 }
 
-const OptionCard: React.FC<OptionCardProps> = ({
+function OptionCard({
   option,
   isSelected,
   selectType,
   onSelect
-}) => {
+}: OptionCardProps) {
   // Protección contra option undefined
   if (!option) {
-    console.error('OptionCard: option prop is required');
     return null;
   }
 
-  const handleCardClick = (e: React.MouseEvent) => {
+  function handleCardClick(e: React.MouseEvent) {
     e.preventDefault();
     onSelect(option.id);
-  };
+  }
 
-  const handleCheckClick = () => {
+  function handleCheckClick() {
     onSelect(option.id);
-  };
+  }
 
-  const handleLabelClick = (e: React.MouseEvent) => {
+  function handleLabelClick(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
     onSelect(option.id);
-  };
+  }
 
   const inputId = `option-${option.id}`;
   
@@ -55,7 +54,7 @@ const OptionCard: React.FC<OptionCardProps> = ({
       data-testid="option-card"
       role="button"
       tabIndex={0}
-      onKeyDown={(e) => {
+      onKeyDown={function(e) {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           onSelect(option.id);
@@ -94,6 +93,6 @@ const OptionCard: React.FC<OptionCardProps> = ({
       </p>
     </div>
   );
-};
+}
 
 export default OptionCard; 

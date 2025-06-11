@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './OptionCard.module.scss';
 import Icon from '../Icon';
-import type { AvailableIcons } from '../../assets/icons';
 
 interface Option {
   id: string;
@@ -21,7 +20,7 @@ export interface OptionCardProps {
 /**
  * Returns the appropriate icon name based on selection type and state
  */
-function getIconName(selectType: 'radio' | 'checkbox', isSelected: boolean): AvailableIcons {
+function getIconName(selectType: 'radio' | 'checkbox', isSelected: boolean): 'Radio' | 'CheckCircle' | 'CheckRadio' {
   if (selectType === 'radio') {
     return isSelected ? 'CheckRadio' : 'Radio';
   } else {

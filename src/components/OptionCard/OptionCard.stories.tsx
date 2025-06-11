@@ -183,7 +183,7 @@ export const InteractivePlayground: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Interactive playground to test both filled and normal states. Use the controls to toggle `isSelected` and see the SVG icons change between normal and filled states with the `fill-current` class.'
+        story: 'Interactive playground to test both filled and normal states. Use the controls to toggle `isSelected` and see the icons change between normal and filled states.'
       }
     }
   }
@@ -214,7 +214,7 @@ export const StateComparison: Story = {
               />
             </div>
             <div style={{ textAlign: 'center' }}>
-              <p style={{ marginBottom: '0.5rem', fontSize: '14px', color: '#667085' }}>Filled State (fill-current)</p>
+              <p style={{ marginBottom: '0.5rem', fontSize: '14px', color: '#667085' }}>Selected State</p>
               <OptionCard
                 option={sampleOptionCard}
                 isSelected={true}
@@ -240,7 +240,7 @@ export const StateComparison: Story = {
               />
             </div>
             <div style={{ textAlign: 'center' }}>
-              <p style={{ marginBottom: '0.5rem', fontSize: '14px', color: '#667085' }}>Filled State (fill-current)</p>
+              <p style={{ marginBottom: '0.5rem', fontSize: '14px', color: '#667085' }}>Selected State</p>
               <OptionCard
                 option={sampleOptionCard}
                 isSelected={true}
@@ -256,7 +256,7 @@ export const StateComparison: Story = {
   parameters: {
     docs: {
       description: {
-        story: 'Visual comparison showing normal vs filled states for both radio buttons and checkboxes. When `isSelected` is true, the SVG components get the `fill-current` class and show their filled appearance.'
+        story: 'Visual comparison showing normal vs selected states for both radio buttons and checkboxes. When `isSelected` is true, the appropriate filled icon is displayed.'
       }
     }
   }

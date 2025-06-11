@@ -136,7 +136,7 @@
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto auto;
-    width: 180px;
+    width: 212px;
     gap: 16px;
     background: var(--Colors-Background-Primary, #FFF);
     box-shadow: 0px 8px 8px 0px var(--color-shadow-black-2, rgba(29, 33, 48, 0.02)), 
@@ -144,24 +144,35 @@
                 0px 3px 3px 0px var(--color-shadow-black-6, rgba(29, 33, 48, 0.06)), 
                 0px 1px 1px 0px var(--color-shadow-black-8, rgba(29, 33, 48, 0.08)), 
                 0px 0px 0px 0px var(--color-shadow-black-10, rgba(29, 33, 48, 0.10));
+    
+    &.square {
+      padding: 0 0 16px 0;
+    }
+
+    &.rounded {
+      padding: 16px;
+    }
+
+    &.wide {
+      padding: 0 0 16px 0;
+    }
   }
   
         .image {
     grid-column: 1 / -1;
     grid-row: 1;
-    justify-self: center;
-    width: 100%;
-    max-width: 180px;
     overflow: hidden;
     
     &.square {
-      height: 180px;
-      aspect-ratio: 1/1;
+      width: 212px;
+      height: 212px;
+      justify-self: stretch;
     }
 
     &.rounded {
+      width: 138.857px;
       height: 138.857px;
-      aspect-ratio: 1/1;
+      justify-self: center;
       
       img {
         border-radius: 80px;
@@ -169,8 +180,9 @@
     }
 
     &.wide {
-      height: 180px;
-      aspect-ratio: 9/16;
+      width: 212px;
+      height: 377px;
+      justify-self: stretch;
     }
     
     img {
@@ -198,6 +210,21 @@
     justify-self: start;
     align-self: start;
     margin-top: 2px;
+  }
+  
+  .optionCard.square,
+  .optionCard.wide {
+    .input {
+      margin-left: 16px;
+    }
+    
+    .title {
+      margin-right: 16px;
+    }
+    
+    .description {
+      margin: 0 16px;
+    }
   }
   
       .description {

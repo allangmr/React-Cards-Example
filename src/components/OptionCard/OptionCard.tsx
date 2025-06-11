@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './OptionCard.module.scss';
-import CheckCircle from './CheckCircle';
-import SquareCheck from './SquareCheck';
+import Icon from '../Icon';
 
 interface Option {
   id: string;
@@ -61,19 +60,38 @@ function OptionCard({
         }
       }}
     >
-      {selectType === 'radio' ? (
-        <CheckCircle
-          isSelected={isSelected}
-          onClick={handleCheckClick}
-          className={styles.input}
+      <div className={styles.input}>
+        <input
+          type={selectType}
+          id={inputId}
+          checked={isSelected}
+          onChange={() => onSelect(option.id)}
+          style={{ 
+            position: 'absolute',
+            opacity: 0,
+            width: '20px',
+            height: '20px',
+            margin: 0,
+            cursor: 'pointer'
+          }}
         />
-      ) : (
-        <SquareCheck
-          isSelected={isSelected}
+        <div 
           onClick={handleCheckClick}
-          className={styles.input}
-        />
-      )}
+          style={{ 
+            cursor: 'pointer',
+            position: 'relative',
+            pointerEvents: 'none'
+          }}
+        >
+          <Icon 
+            name={selectType === 'radio' 
+              ? (isSelected ? 'check-radio' : 'radio')
+              : (isSelected ? 'check-circle' : 'radio')
+            } 
+            size={20}
+          />
+        </div>
+      </div>
       
       <div className={`${styles.image} ${styles[option.imageType]}`}>
         <img 

@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './OptionCard.module.scss';
+import CheckCircle from './CheckCircle';
+import SquareCheck from './SquareCheck';
 
 interface Option {
   id: string;
@@ -22,11 +24,18 @@ const OptionCard: React.FC<OptionCardProps> = ({
   selectType,
   onSelect
 }) => {
-  const handleCardClick = () => {
+  const handleCardClick = (e: React.MouseEvent) => {
+    e.preventDefault();
     onSelect(option.id);
   };
 
-  const handleInputChange = () => {
+  const handleCheckClick = () => {
+    onSelect(option.id);
+  };
+
+  const handleLabelClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
     onSelect(option.id);
   };
 
@@ -38,16 +47,29 @@ const OptionCard: React.FC<OptionCardProps> = ({
       data-selected={isSelected}
       onClick={handleCardClick}
       data-testid="option-card"
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          onSelect(option.id);
+        }
+      }}
     >
-      <input
-        type={selectType}
-        id={inputId}
-        name={`option-group-${selectType}`}
-        checked={isSelected}
-        onChange={handleInputChange}
-        className={styles.input}
-        onClick={(e) => e.stopPropagation()}
-      />
+      {selectType === 'radio' ? (
+        <CheckCircle
+          isSelected={isSelected}
+          onClick={handleCheckClick}
+          className={styles.input}
+        />
+      ) : (
+        <SquareCheck
+          isSelected={isSelected}
+          onClick={handleCheckClick}
+          className={styles.input}
+        />
+      )}
+      
       <div className={`${styles.image} ${styles[option.imageType]}`}>
         <img 
           src={option.image} 
@@ -57,7 +79,7 @@ const OptionCard: React.FC<OptionCardProps> = ({
       <label 
         htmlFor={inputId}
         className={styles.title}
-        onClick={(e) => e.stopPropagation()}
+        onClick={handleLabelClick}
       >
         {option.title}
       </label>

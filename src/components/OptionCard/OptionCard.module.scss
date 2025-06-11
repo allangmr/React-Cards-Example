@@ -1,6 +1,5 @@
 @use '../../styles/mixins' as mixins;
 
-// Variables CSS personalizadas según Figma
 :root {
   --padding-margins-normal: 16px;
   --padding-margins-tight: 8px;
@@ -20,7 +19,6 @@
 }
 
 .optionCard {
-  // Mobile styles (base) - checkbox, imagen, título en línea
   display: flex;
   width: 100%;
   max-width: 329px;
@@ -50,19 +48,15 @@
   }
 
   &.rounded {
-    // Estilos específicos para rounded
   }
 
   &.square {
-    // Estilos específicos para square
   }
 
   &.wide {
-    // Estilos específicos para wide
   }
 }
 
-// Mobile: checkbox, imagen, título (en línea)
 .input {
   order: 1;
   position: relative;
@@ -70,60 +64,14 @@
   height: 20px;
   flex-shrink: 0;
   margin: 0;
-  cursor: pointer;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  border: 2px solid var(--Colors-Interactive-Secondary-Fill, #D0D5DD);
-  background: #fff;
   transition: all 0.2s ease;
 
-  &[type="radio"] {
-    border-radius: 50%;
-    border: 2px solid #D0D5DD;
-    background: white;
-    
-    &:checked {
-      border-color: #3b82f6;
-      background-color: white;
-      position: relative;
-      
-      &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 8px;
-        height: 8px;
-        background-color: #3b82f6;
-        border-radius: 50%;
-      }
-    }
+  &:hover {
+    transform: scale(1.05);
   }
 
-  &[type="checkbox"] {
-    border-radius: 4px;
-    border: 2px solid #D0D5DD;
-    background: white;
-    
-    &:checked {
-      border-color: #3b82f6;
-      background-color: #3b82f6;
-      position: relative;
-      
-      &::after {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%) rotate(45deg);
-        width: 4px;
-        height: 8px;
-        border: solid white;
-        border-width: 0 2px 2px 0;
-      }
-    }
+  &:active {
+    transform: scale(0.95);
   }
 }
 
@@ -176,10 +124,9 @@
 }
 
 .description {
-  display: none; // Oculto en mobile
+  display: none;
 }
 
-// Desktop layout
 @include mixins.media-query(lg, min) {
   .optionCard {
     display: grid;
@@ -195,9 +142,8 @@
                 0px 0px 0px 0px var(--color-shadow-black-10, rgba(29, 33, 48, 0.10));
   }
   
-  // Desktop: imagen arriba (fila 1, span ambas columnas), luego input+título lado a lado (fila 2), descripción abajo (fila 3, span ambas columnas)
-  .image {
-    grid-column: 1 / -1; // Ocupa ambas columnas
+      .image {
+      grid-column: 1 / -1;
     grid-row: 1;
     justify-self: stretch;
     
@@ -239,11 +185,11 @@
     display: block;
     justify-self: start;
     align-self: start;
-    margin-top: 2px; // Ajuste fino para alineación vertical con el checkbox
+    margin-top: 2px;
   }
   
-  .description {
-    grid-column: 1 / -1; // Ocupa ambas columnas
+      .description {
+      grid-column: 1 / -1;
     grid-row: 3;
     display: -webkit-box;
     -webkit-box-orient: vertical;

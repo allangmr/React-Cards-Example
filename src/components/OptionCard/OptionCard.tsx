@@ -1,5 +1,5 @@
 import React from 'react';
-import './OptionCard.scss';
+import styles from './OptionCard.module.scss';
 
 interface Option {
   id: string;
@@ -34,7 +34,7 @@ const OptionCard: React.FC<OptionCardProps> = ({
   
   return (
     <div 
-      className={`option-card option-card--${option.imageType} ${isSelected ? 'option-card--selected' : ''}`}
+      className={`${styles.optionCard} ${styles[option.imageType]} ${isSelected ? styles.selected : ''}`}
       data-selected={isSelected}
       onClick={handleCardClick}
       data-testid="option-card"
@@ -45,10 +45,10 @@ const OptionCard: React.FC<OptionCardProps> = ({
         name={`option-group-${selectType}`}
         checked={isSelected}
         onChange={handleInputChange}
-        className="option-card__input"
+        className={styles.input}
         onClick={(e) => e.stopPropagation()}
       />
-      <div className={`option-card__image option-card__image--${option.imageType}`}>
+      <div className={`${styles.image} ${styles[option.imageType]}`}>
         <img 
           src={option.image} 
           alt={option.title}
@@ -56,12 +56,12 @@ const OptionCard: React.FC<OptionCardProps> = ({
       </div>
       <label 
         htmlFor={inputId}
-        className="option-card__title"
+        className={styles.title}
         onClick={(e) => e.stopPropagation()}
       >
         {option.title}
       </label>
-      <p className="option-card__description">
+      <p className={styles.description}>
         {option.description}
       </p>
     </div>

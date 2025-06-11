@@ -14,7 +14,6 @@ export interface OptionCardProps {
   option: Option;
   isSelected: boolean;
   selectType: 'radio' | 'checkbox';
-  onSelect: (optionId: string) => void;
 }
 
 /**
@@ -31,26 +30,10 @@ function getIconName(selectType: 'radio' | 'checkbox', isSelected: boolean): 'Ra
 function OptionCard({
   option,
   isSelected,
-  selectType,
-  onSelect
+  selectType
 }: OptionCardProps) {
   if (!option) {
     return null;
-  }
-
-  function handleCardClick(e: React.MouseEvent) {
-    e.preventDefault();
-    onSelect(option.id);
-  }
-
-  function handleCheckClick() {
-    onSelect(option.id);
-  }
-
-  function handleLabelClick(e: React.MouseEvent) {
-    e.preventDefault();
-    e.stopPropagation();
-    onSelect(option.id);
   }
 
   const inputId = `option-${option.id}`;
@@ -59,23 +42,18 @@ function OptionCard({
     <div 
       className={`${styles.optionCard} ${styles[option.imageType]} ${isSelected ? styles.selected : ''}`}
       data-selected={isSelected}
-      onClick={handleCardClick}
+      data-option-id={option.id}
+      data-select-type={selectType}
       data-testid="option-card"
       role="button"
       tabIndex={0}
-      onKeyDown={function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          onSelect(option.id);
-        }
-      }}
     >
       <div className={styles.input}>
         <input
           type={selectType}
           id={inputId}
           checked={isSelected}
-          onChange={() => onSelect(option.id)}
+          readOnly
           style={{ 
             position: 'absolute',
             opacity: 0,
@@ -86,7 +64,6 @@ function OptionCard({
           }}
         />
         <div 
-          onClick={handleCheckClick}
           style={{ 
             cursor: 'pointer',
             position: 'relative',
@@ -109,7 +86,6 @@ function OptionCard({
       <label 
         htmlFor={inputId}
         className={styles.title}
-        onClick={handleLabelClick}
       >
         {option.title}
       </label>

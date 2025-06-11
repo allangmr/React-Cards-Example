@@ -21,14 +21,11 @@ const mockOption: Option = {
 
 describe('OptionCard', () => {
   it('renders option information correctly', () => {
-    const mockOnSelect = vi.fn();
-    
     render(
       <OptionCard
         option={mockOption}
         isSelected={false}
         selectType="radio"
-        onSelect={mockOnSelect}
       />
     );
 
@@ -37,69 +34,81 @@ describe('OptionCard', () => {
     expect(screen.getByAltText('Test Option')).toBeInTheDocument();
   });
 
-  it('calls onSelect when input is changed', () => {
-    const mockOnSelect = vi.fn();
+  it('emits click event with correct data attributes when input is changed', () => {
+    const mockHandler = vi.fn();
     
     render(
-      <OptionCard
-        option={mockOption}
-        isSelected={false}
-        selectType="radio"
-        onSelect={mockOnSelect}
-      />
+      <div onClick={mockHandler}>
+        <OptionCard
+          option={mockOption}
+          isSelected={false}
+          selectType="radio"
+        />
+      </div>
     );
 
     const input = screen.getByRole('radio');
     fireEvent.click(input);
 
-    expect(mockOnSelect).toHaveBeenCalledWith('test-option-1');
+    expect(mockHandler).toHaveBeenCalled();
+    
+    // Verify the card has correct data attributes
+    const card = screen.getByTestId('option-card');
+    expect(card).toHaveAttribute('data-option-id', 'test-option-1');
+    expect(card).toHaveAttribute('data-select-type', 'radio');
   });
 
-  it('calls onSelect when label is clicked', () => {
-    const mockOnSelect = vi.fn();
+  it('emits click event with correct data attributes when label is clicked', () => {
+    const mockHandler = vi.fn();
     
     render(
-      <OptionCard
-        option={mockOption}
-        isSelected={false}
-        selectType="radio"
-        onSelect={mockOnSelect}
-      />
+      <div onClick={mockHandler}>
+        <OptionCard
+          option={mockOption}
+          isSelected={false}
+          selectType="radio"
+        />
+      </div>
     );
 
     const label = screen.getByLabelText('Test Option');
     fireEvent.click(label);
 
-    expect(mockOnSelect).toHaveBeenCalledWith('test-option-1');
+    expect(mockHandler).toHaveBeenCalled();
+    
+    // Verify the card has correct data attributes
+    const card = screen.getByTestId('option-card');
+    expect(card).toHaveAttribute('data-option-id', 'test-option-1');
+    expect(card).toHaveAttribute('data-select-type', 'radio');
   });
 
-  it('calls onSelect when card is clicked', () => {
-    const mockOnSelect = vi.fn();
+  it('emits click event with correct data attributes when card is clicked', () => {
+    const mockHandler = vi.fn();
     
     render(
-      <OptionCard
-        option={mockOption}
-        isSelected={false}
-        selectType="radio"
-        onSelect={mockOnSelect}
-      />
+      <div onClick={mockHandler}>
+        <OptionCard
+          option={mockOption}
+          isSelected={false}
+          selectType="radio"
+        />
+      </div>
     );
 
     const card = screen.getByTestId('option-card');
     fireEvent.click(card);
 
-    expect(mockOnSelect).toHaveBeenCalledWith('test-option-1');
+    expect(mockHandler).toHaveBeenCalled();
+    expect(card).toHaveAttribute('data-option-id', 'test-option-1');
+    expect(card).toHaveAttribute('data-select-type', 'radio');
   });
 
   it('shows as selected when isSelected is true', () => {
-    const mockOnSelect = vi.fn();
-    
     render(
       <OptionCard
         option={mockOption}
         isSelected={true}
         selectType="radio"
-        onSelect={mockOnSelect}
       />
     );
 
@@ -108,14 +117,11 @@ describe('OptionCard', () => {
   });
 
   it('renders checkbox when selectType is checkbox', () => {
-    const mockOnSelect = vi.fn();
-    
     render(
       <OptionCard
         option={mockOption}
         isSelected={false}
         selectType="checkbox"
-        onSelect={mockOnSelect}
       />
     );
 
@@ -123,14 +129,11 @@ describe('OptionCard', () => {
   });
 
   it('renders radio when selectType is radio', () => {
-    const mockOnSelect = vi.fn();
-    
     render(
       <OptionCard
         option={mockOption}
         isSelected={false}
         selectType="radio"
-        onSelect={mockOnSelect}
       />
     );
 
@@ -138,14 +141,11 @@ describe('OptionCard', () => {
   });
 
   it('applies correct CSS classes based on option imageType', () => {
-    const mockOnSelect = vi.fn();
-    
     render(
       <OptionCard
         option={mockOption}
         isSelected={false}
         selectType="radio"
-        onSelect={mockOnSelect}
       />
     );
 
@@ -156,14 +156,11 @@ describe('OptionCard', () => {
   });
 
   it('applies selected class when isSelected is true', () => {
-    const mockOnSelect = vi.fn();
-    
     render(
       <OptionCard
         option={mockOption}
         isSelected={true}
         selectType="radio"
-        onSelect={mockOnSelect}
       />
     );
 

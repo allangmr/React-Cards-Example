@@ -52,10 +52,6 @@ const meta: Meta<typeof OptionCard> = {
         defaultValue: { summary: "'radio'" }
       }
     },
-    onSelect: {
-      action: 'selected',
-      description: 'Callback function when option is selected'
-    },
   },
 };
 
@@ -67,7 +63,6 @@ export const RadioButton: Story = {
     option: sampleOptionCard,
     isSelected: false,
     selectType: 'radio',
-    onSelect: () => {},
   },
   parameters: {
     docs: {
@@ -83,7 +78,6 @@ export const RadioButtonSelected: Story = {
     option: sampleOptionCard,
     isSelected: true,
     selectType: 'radio',
-    onSelect: () => {},
   },
   parameters: {
     docs: {
@@ -99,7 +93,6 @@ export const Checkbox: Story = {
     option: sampleOptionCard,
     isSelected: false,
     selectType: 'checkbox',
-    onSelect: () => {},
   },
   parameters: {
     docs: {
@@ -115,7 +108,6 @@ export const CheckboxSelected: Story = {
     option: sampleOptionCard,
     isSelected: true,
     selectType: 'checkbox',
-    onSelect: () => {},
   },
   parameters: {
     docs: {
@@ -138,7 +130,6 @@ export const SquareImage: Story = {
     },
     isSelected: false,
     selectType: 'radio',
-    onSelect: () => {},
   },
   parameters: {
     docs: {
@@ -161,7 +152,6 @@ export const WideImage: Story = {
     },
     isSelected: false,
     selectType: 'checkbox',
-    onSelect: () => {},
   },
   parameters: {
     docs: {
@@ -178,7 +168,6 @@ export const InteractivePlayground: Story = {
     option: sampleOptionCard,
     isSelected: false,
     selectType: 'radio',
-    onSelect: () => {},
   },
   parameters: {
     docs: {
@@ -210,7 +199,6 @@ export const StateComparison: Story = {
                 option={sampleOptionCard}
                 isSelected={false}
                 selectType="radio"
-                onSelect={() => {}}
               />
             </div>
             <div style={{ textAlign: 'center' }}>
@@ -219,7 +207,6 @@ export const StateComparison: Story = {
                 option={sampleOptionCard}
                 isSelected={true}
                 selectType="radio"
-                onSelect={() => {}}
               />
             </div>
           </div>
@@ -236,7 +223,6 @@ export const StateComparison: Story = {
                 option={sampleOptionCard}
                 isSelected={false}
                 selectType="checkbox"
-                onSelect={() => {}}
               />
             </div>
             <div style={{ textAlign: 'center' }}>
@@ -245,7 +231,6 @@ export const StateComparison: Story = {
                 option={sampleOptionCard}
                 isSelected={true}
                 selectType="checkbox"
-                onSelect={() => {}}
               />
             </div>
           </div>
@@ -305,7 +290,6 @@ export const MultipleCards: Story = {
             option={option}
             isSelected={false}
             selectType={index === 2 ? 'checkbox' : 'radio'}
-            onSelect={() => {}}
           />
         ))}
       </div>

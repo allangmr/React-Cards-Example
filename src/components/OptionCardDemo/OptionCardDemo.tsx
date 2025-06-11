@@ -83,30 +83,38 @@ const OptionCardDemo: React.FC = () => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [selectedSecurity, setSelectedSecurity] = useState<string[]>([]);
 
-  // Maneja selección simple (radio buttons)
-  const handleLockSelect = (optionId: string) => {
-    setSelectedLock(optionId);
-  };
-
-  // Maneja selección múltiple (checkboxes)
-  const handleOptionSelect = (optionId: string) => {
-    setSelectedOptions(prev => {
-      if (prev.includes(optionId)) {
-        return prev.filter(id => id !== optionId); // Deseleccionar
-      } else {
-        return [...prev, optionId]; // Seleccionar
+  /**
+   * Handles all option selections via event delegation
+   */
+  const handleSelection = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    const card = target.closest('[data-option-id]') as HTMLElement;
+    
+    if (!card) return;
+    
+    const optionId = card.dataset.optionId!;
+    const selectType = card.dataset.selectType as 'radio' | 'checkbox';
+    
+    if (selectType === 'radio') {
+      setSelectedLock(optionId);
+    } else {
+      const isMaterialSection = materialOptions.some(opt => opt.id === optionId);
+      const isSecuritySection = securityOptions.some(opt => opt.id === optionId);
+      
+      if (isMaterialSection) {
+        setSelectedOptions(prev => 
+          prev.includes(optionId) 
+            ? prev.filter(id => id !== optionId)
+            : [...prev, optionId]
+        );
+      } else if (isSecuritySection) {
+        setSelectedSecurity(prev => 
+          prev.includes(optionId)
+            ? prev.filter(id => id !== optionId)
+            : [...prev, optionId]
+        );
       }
-    });
-  };
-
-  const handleSecuritySelect = (optionId: string) => {
-    setSelectedSecurity(prev => {
-      if (prev.includes(optionId)) {
-        return prev.filter(id => id !== optionId);
-      } else {
-        return [...prev, optionId];
-      }
-    });
+    }
   };
 
   // Función para limpiar selecciones
@@ -137,14 +145,13 @@ const OptionCardDemo: React.FC = () => {
           🔐 Choose Your Lock Type 
           <span className={styles.selectionType}>(Select One)</span>
         </h2>
-        <div className={styles.optionsGrid}>
+        <div className={styles.optionsGrid} onClick={handleSelection}>
           {sampleOptions.map(option => (
             <OptionCard
               key={option.id}
               option={option}
               isSelected={selectedLock === option.id}
               selectType="radio"
-              onSelect={handleLockSelect}
             />
           ))}
         </div>
@@ -159,14 +166,13 @@ const OptionCardDemo: React.FC = () => {
           🏗️ Choose Options 
           <span className={styles.selectionType}>(Multiple Selection)</span>
         </h2>
-        <div className={styles.optionsGrid}>
+        <div className={styles.optionsGrid} onClick={handleSelection}>
           {materialOptions.map(option => (
             <OptionCard
               key={option.id}
               option={option}
               isSelected={selectedOptions.includes(option.id)}
               selectType="checkbox"
-              onSelect={handleOptionSelect}
             />
           ))}
         </div>
@@ -183,14 +189,13 @@ const OptionCardDemo: React.FC = () => {
           🛡️ Security Features 
           <span className={styles.selectionType}>(Multiple Selection)</span>
         </h2>
-        <div className={styles.optionsGrid}>
+        <div className={styles.optionsGrid} onClick={handleSelection}>
           {securityOptions.map(option => (
             <OptionCard
               key={option.id}
               option={option}
               isSelected={selectedSecurity.includes(option.id)}
               selectType="checkbox"
-              onSelect={handleSecuritySelect}
             />
           ))}
         </div>

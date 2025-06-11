@@ -1,10 +1,11 @@
 @use '../../styles/variables' as *;
 @use '../../styles/mixins' as *;
+@use 'sass:color';
 
 .step-menu {
   width: $sidebar-width;
   height: 100vh;
-  background: linear-gradient(135deg, $primary-color 0%, darken($primary-color, 10%) 100%);
+  background: linear-gradient(135deg, $primary-color 0%, color.adjust($primary-color, $lightness: -10%) 100%);
   color: $white;
   @include flex(column, stretch, flex-start);
   position: fixed;

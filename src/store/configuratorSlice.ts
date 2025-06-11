@@ -1,5 +1,5 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
-import type { ConfiguratorState, Material, Selection } from '../types';
+import type { ConfiguratorState } from '../types';
 
 const initialState: ConfiguratorState = {
   currentStep: 1,
@@ -21,7 +21,7 @@ const configuratorSlice = createSlice({
   reducers: {
     setCurrentStep: (state, action: PayloadAction<number>) => {
       state.currentStep = action.payload;
-      state.steps.forEach((step, index) => {
+      state.steps.forEach((step) => {
         step.isCurrent = step.id === action.payload;
       });
     },
@@ -45,26 +45,26 @@ const configuratorSlice = createSlice({
         state.steps[state.currentStep - 1].isCompleted = false;
       }
     },
-    toggleMaterialSelection: (state, action: PayloadAction<{ stepId: number; materialId: string; isMultiSelect: boolean }>) => {
+    toggleOptionSelection: (state, action: PayloadAction<{ stepId: number; materialId: string; isMultiSelect: boolean }>) => {
       const { stepId, materialId, isMultiSelect } = action.payload;
       
       const existingSelection = state.selections.find(s => s.stepId === stepId);
       
       if (existingSelection) {
         if (isMultiSelect) {
-          const materialIndex = existingSelection.selectedMaterialIds.indexOf(materialId);
+          const materialIndex = existingSelection.selectedOptionIds.indexOf(materialId);
           if (materialIndex > -1) {
-            existingSelection.selectedMaterialIds.splice(materialIndex, 1);
+            existingSelection.selectedOptionIds.splice(materialIndex, 1);
           } else {
-            existingSelection.selectedMaterialIds.push(materialId);
+            existingSelection.selectedOptionIds.push(materialId);
           }
         } else {
-          existingSelection.selectedMaterialIds = [materialId];
+          existingSelection.selectedOptionIds = [materialId];
         }
       } else {
         state.selections.push({
           stepId,
-          selectedMaterialIds: [materialId],
+          selectedOptionIds: [materialId],
           isMultiSelect,
         });
       }
@@ -73,19 +73,8 @@ const configuratorSlice = createSlice({
       state.stepConfigs = action.payload;
     },
     calculateTotalPrice: (state) => {
-      let total = 0;
-      state.selections.forEach(selection => {
-        const stepConfig = state.stepConfigs.find(config => config.id === selection.stepId);
-        if (stepConfig) {
-          selection.selectedMaterialIds.forEach(materialId => {
-            const material = stepConfig.materials.find(m => m.id === materialId);
-            if (material) {
-              total += material.price;
-            }
-          });
-        }
-      });
-      state.totalPrice = total;
+      // Ya no calculamos precio ya que las opciones no tienen precio
+      state.totalPrice = 0;
     },
     resetConfigurator: (state) => {
       state.currentStep = 1;
@@ -103,7 +92,7 @@ export const {
   setCurrentStep,
   nextStep,
   previousStep,
-  toggleMaterialSelection,
+  toggleOptionSelection,
   setStepConfigs,
   calculateTotalPrice,
   resetConfigurator,

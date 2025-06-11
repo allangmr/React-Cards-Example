@@ -36,11 +36,21 @@ const meta: Meta<typeof OptionCard> = {
     },
     isSelected: {
       control: 'boolean',
-      description: 'Whether the option is selected'
+      description: 'Whether the option is selected (shows filled state when true)',
+      defaultValue: false,
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' }
+      }
     },
     selectType: {
       control: { type: 'select', options: ['radio', 'checkbox'] },
-      description: 'Input type: radio for single selection, checkbox for multiple selection'
+      description: 'Input type: radio for single selection, checkbox for multiple selection',
+      defaultValue: 'radio',
+      table: {
+        type: { summary: "'radio' | 'checkbox'" },
+        defaultValue: { summary: "'radio'" }
+      }
     },
     onSelect: {
       action: 'selected',
@@ -157,6 +167,96 @@ export const WideImage: Story = {
     docs: {
       description: {
         story: 'Wide image (16:9) for complete door views'
+      }
+    }
+  }
+};
+
+// Interactive playground for testing both states
+export const InteractivePlayground: Story = {
+  args: {
+    option: sampleOptionCard,
+    isSelected: false,
+    selectType: 'radio',
+    onSelect: (id: string) => console.log('Selected:', id),
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Interactive playground to test both filled and normal states. Use the controls to toggle `isSelected` and see the SVG icons change between normal and filled states with the `fill-current` class.'
+      }
+    }
+  }
+};
+
+// Show comparison of states
+export const StateComparison: Story = {
+  render: () => {
+    return (
+      <div style={{ 
+        display: 'flex', 
+        flexDirection: 'column', 
+        gap: '2rem', 
+        padding: '2rem'
+      }}>
+        <div>
+          <h3 style={{ marginBottom: '1rem', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '600' }}>
+            Radio Button States
+          </h3>
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <div style={{ textAlign: 'center' }}>
+              <p style={{ marginBottom: '0.5rem', fontSize: '14px', color: '#667085' }}>Normal State</p>
+              <OptionCard
+                option={sampleOptionCard}
+                isSelected={false}
+                selectType="radio"
+                onSelect={(id: string) => console.log('Radio Normal Selected:', id)}
+              />
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <p style={{ marginBottom: '0.5rem', fontSize: '14px', color: '#667085' }}>Filled State (fill-current)</p>
+              <OptionCard
+                option={sampleOptionCard}
+                isSelected={true}
+                selectType="radio"
+                onSelect={(id: string) => console.log('Radio Filled Selected:', id)}
+              />
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <h3 style={{ marginBottom: '1rem', fontFamily: 'Open Sans', fontSize: '16px', fontWeight: '600' }}>
+            Checkbox States
+          </h3>
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <div style={{ textAlign: 'center' }}>
+              <p style={{ marginBottom: '0.5rem', fontSize: '14px', color: '#667085' }}>Normal State</p>
+              <OptionCard
+                option={sampleOptionCard}
+                isSelected={false}
+                selectType="checkbox"
+                onSelect={(id: string) => console.log('Checkbox Normal Selected:', id)}
+              />
+            </div>
+            <div style={{ textAlign: 'center' }}>
+              <p style={{ marginBottom: '0.5rem', fontSize: '14px', color: '#667085' }}>Filled State (fill-current)</p>
+              <OptionCard
+                option={sampleOptionCard}
+                isSelected={true}
+                selectType="checkbox"
+                onSelect={(id: string) => console.log('Checkbox Filled Selected:', id)}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Visual comparison showing normal vs filled states for both radio buttons and checkboxes. When `isSelected` is true, the SVG components get the `fill-current` class and show their filled appearance.'
       }
     }
   }

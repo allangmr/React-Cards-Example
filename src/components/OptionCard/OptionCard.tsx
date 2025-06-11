@@ -11,7 +11,7 @@ interface Option {
   imageType: 'rounded' | 'square' | 'wide';
 }
 
-interface OptionCardProps {
+export interface OptionCardProps {
   option: Option;
   isSelected: boolean;
   selectType: 'radio' | 'checkbox';
@@ -24,6 +24,12 @@ const OptionCard: React.FC<OptionCardProps> = ({
   selectType,
   onSelect
 }) => {
+  // Protección contra option undefined
+  if (!option) {
+    console.error('OptionCard: option prop is required');
+    return null;
+  }
+
   const handleCardClick = (e: React.MouseEvent) => {
     e.preventDefault();
     onSelect(option.id);
@@ -73,7 +79,7 @@ const OptionCard: React.FC<OptionCardProps> = ({
       <div className={`${styles.image} ${styles[option.imageType]}`}>
         <img 
           src={option.image} 
-          alt={option.title}
+          alt={option.title} 
         />
       </div>
       <label 

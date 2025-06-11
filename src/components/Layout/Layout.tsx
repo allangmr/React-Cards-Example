@@ -27,7 +27,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         totalSteps={5}
         canGoNext={false}
         canGoPrevious={false}
-        totalPrice={0}
+
         onNext={() => {}}
         onPrevious={() => {}}
         onReset={() => {}}

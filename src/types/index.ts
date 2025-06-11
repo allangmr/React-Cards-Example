@@ -16,7 +16,7 @@ export interface OptionCard {
 
 export interface Selection {
   stepId: number;
-  selectedMaterialIds: string[];
+  selectedOptionIds: string[];
   isMultiSelect: boolean;
 }
 
@@ -24,7 +24,7 @@ export interface StepConfig {
   id: number;
   title: string;
   description: string;
-  materials: Material[];
+  options: Option[];
   isMultiSelect: boolean;
 }
 
@@ -36,4 +36,12 @@ export interface ConfiguratorState {
   totalPrice: number;
 }
 
-export type ImageType = 'rounded' | 'square' | 'wide'; 
+export type ImageType = 'rounded' | 'square' | 'wide';
+
+export interface Option {
+  id: string;
+  title: string;
+  description: string;
+  image: string;
+  imageType: 'rounded' | 'square' | 'wide';
+} 

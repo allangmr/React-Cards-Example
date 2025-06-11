@@ -6,7 +6,6 @@ interface StepNavigationProps {
   totalSteps: number;
   canGoNext: boolean;
   canGoPrevious: boolean;
-  totalPrice: number;
   onNext: () => void;
   onPrevious: () => void;
   onReset: () => void;
@@ -18,7 +17,6 @@ const StepNavigation: React.FC<StepNavigationProps> = ({
   totalSteps,
   canGoNext,
   canGoPrevious,
-  totalPrice,
   onNext,
   onPrevious,
   onReset,
@@ -32,13 +30,6 @@ const StepNavigation: React.FC<StepNavigationProps> = ({
         <div className="step-navigation__info">
           <div className="step-navigation__step-counter">
             Paso {currentStep} de {totalSteps}
-          </div>
-          
-          <div className="step-navigation__price">
-            <span className="step-navigation__price-label">Total:</span>
-            <span className="step-navigation__price-value">
-              ${totalPrice.toLocaleString()}
-            </span>
           </div>
         </div>
 

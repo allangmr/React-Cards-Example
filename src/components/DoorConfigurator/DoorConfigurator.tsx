@@ -4,9 +4,8 @@ import {
   setCurrentStep,
   nextStep,
   previousStep,
-  toggleMaterialSelection,
+  toggleOptionSelection,
   setStepConfigs,
-  calculateTotalPrice,
   resetConfigurator,
 } from '../../store/configuratorSlice';
 import { mockStepConfigs } from '../../utils/mockData';
@@ -22,18 +21,12 @@ const DoorConfigurator: React.FC = () => {
     steps,
     stepConfigs,
     selections,
-    totalPrice,
   } = useAppSelector((state) => state.configurator);
 
   // Inicializar configuraciones al montar el componente
   useEffect(() => {
     dispatch(setStepConfigs(mockStepConfigs));
   }, [dispatch]);
-
-  // Recalcular precio cuando cambien las selecciones
-  useEffect(() => {
-    dispatch(calculateTotalPrice());
-  }, [selections, dispatch]);
 
   const currentStepConfig = stepConfigs.find(config => config.id === currentStep);
   const currentSelection = selections.find(selection => selection.stepId === currentStep);
@@ -42,9 +35,9 @@ const DoorConfigurator: React.FC = () => {
     dispatch(setCurrentStep(stepId));
   };
 
-  const handleMaterialSelect = (materialId: string) => {
+  const handleOptionSelect = (materialId: string) => {
     if (currentStepConfig) {
-      dispatch(toggleMaterialSelection({
+      dispatch(toggleOptionSelection({
         stepId: currentStep,
         materialId,
         isMultiSelect: currentStepConfig.isMultiSelect,
@@ -68,7 +61,7 @@ const DoorConfigurator: React.FC = () => {
     alert('¡Configuración completada! En una implementación real, aquí se procesaría la orden.');
   };
 
-  const canGoNext = currentSelection && currentSelection.selectedMaterialIds.length > 0;
+  const canGoNext = currentSelection && currentSelection.selectedOptionIds.length > 0;
   const canGoPrevious = currentStep > 1;
 
   return (
@@ -93,15 +86,15 @@ const DoorConfigurator: React.FC = () => {
               </header>
 
               <div className="door-configurator__materials">
-                {currentStepConfig.materials.map((material) => (
+                {currentStepConfig.options.map((option) => (
                   <OptionCard
-                    key={material.id}
-                    material={material}
+                    key={option.id}
+                    option={option}
                     isSelected={
-                      currentSelection?.selectedMaterialIds.includes(material.id) || false
+                      currentSelection?.selectedOptionIds.includes(option.id) || false
                     }
-                    isMultiSelect={currentStepConfig.isMultiSelect}
-                    onSelect={handleMaterialSelect}
+                    selectType={currentStepConfig.isMultiSelect ? 'checkbox' : 'radio'}
+                    onSelect={handleOptionSelect}
                   />
                 ))}
               </div>
@@ -115,7 +108,6 @@ const DoorConfigurator: React.FC = () => {
         totalSteps={steps.length}
         canGoNext={!!canGoNext}
         canGoPrevious={canGoPrevious}
-        totalPrice={totalPrice}
         onNext={handleNext}
         onPrevious={handlePrevious}
         onReset={handleReset}

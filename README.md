@@ -5,7 +5,7 @@ Una aplicación web moderna y responsiva para configurar puertas de seguridad pe
 ## ✨ Características
 
 - **Step-by-Step Configuration**: Interfaz intuitiva con navegación por pasos
-- **Interactive Material Cards**: Cards interactivas con 3 tipos de imagen (rounded, square, wide 16:9)
+- **Interactive Option Cards**: Cards interactivas con 3 tipos de imagen (rounded, square, wide 16:9)
 - **Real-time Price Calculation**: Cálculo automático del precio total
 - **Redux State Management**: Gestión de estado centralizada con Redux Toolkit
 - **Responsive Design**: Diseño totalmente responsivo para todas las pantallas
@@ -30,7 +30,7 @@ Una aplicación web moderna y responsiva para configurar puertas de seguridad pe
 ```
 src/
 ├── components/           # Componentes reutilizables
-│   ├── MaterialCard/    # Card para selección de materiales
+│   ├── OptionCard/    # Card para selección de materiales
 │   ├── StepMenu/        # Menú lateral de navegación por pasos
 │   ├── StepNavigation/  # Navegación flotante inferior
 │   ├── Layout/          # Layout principal de la aplicación
@@ -60,7 +60,7 @@ src/
   - Estados: current, completed, disabled
   - Barra de progreso general
 
-### Material Cards
+### Option Cards
 - **Tipos de imagen**:
   - `rounded`: Imágenes circulares (1:1) para cerraduras y accesorios
   - `square`: Imágenes cuadradas (1:1) para materiales y colores
@@ -160,7 +160,7 @@ Incluye:
 ## 🎯 Flujo de Usuario
 
 1. **Paso 1 - Cerradura**: Selección de tipo de cerradura (radio buttons)
-2. **Paso 2 - Material**: Elección del material principal (radio buttons)
+2. **Paso 2 - Option**: Elección del option principal (radio buttons)
 3. **Paso 3 - Refuerzo Militar**: Selección múltiple de refuerzos (checkboxes)
 4. **Paso 4 - Color**: Personalización del acabado (radio buttons)
 5. **Paso 5 - Accesorios**: Selección múltiple de extras (checkboxes)

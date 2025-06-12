@@ -1,0 +1,278 @@
+$theme: (
+  "colors": (
+    "primitive": (
+      "white": #ffffff,
+      "grey-1": #f2f4f7,
+      "grey-2": #d0d5dd,
+      "grey-3": #667085,
+      "grey-4": #344054,
+      "black": #0d0d0d,
+      "indigo": #29293b,
+      "blurple": #4B51F2,
+      "blurple-light": #9FA2FA,
+      "pink-light": #FFD7EF,
+      "pink-dark": #320707,
+      "green": #26330D,
+      "yellow": #F5F5A8,
+      "red": #B23333
+    ),
+    "opacity": (
+      "black-10": rgba(29, 33, 48, 0.1),
+      "black-8": rgba(29, 33, 48, 0.08),
+      "black-6": rgba(29, 33, 48, 0.06),
+      "black-4": rgba(29, 33, 48, 0.04),
+      "black-2": rgba(29, 33, 48, 0.02)
+    ),
+    "tokens": (
+      "default": (
+        "text-primary": #343335,
+        "text-secondary": #667085,
+        "text-tertiary": #d0d5dd,
+        "text-accent-1": #0F4B61,
+        "text-accent-2": #167091,
+        "text-inverted": #f2f4f7,
+        "background-primary": #ffffff,
+        "background-secondary": #f2f4f7,
+        "background-tertiary": #d0d5dd,
+        "background-accent-1": #167091,
+        "background-accent-2": #A5D5E6,
+        "background-inverted": #072530,
+        "border-primary": #344054,
+        "border-secondary": #667085,
+        "border-tertiary": #d0d5dd,
+        "border-accent-1": #167091,
+        "border-inverted": #f2f4f7,
+        "icon-primary": #344054,
+        "icon-secondary": #667085,
+        "icon-tertiary": #d0d5dd,
+        "icon-accent-1": #167091,
+        "icon-inverted": #f2f4f7,
+        "focus-primary": #99DBF4,
+        "focus-inverted": #D2EAF3,
+        "support-warning": #FFC107,
+        "support-error": #C62828,
+        "support-success": #8BC34A,
+        "interactive-primary-fill": #007BAB,
+        "interactive-primary-fill-hover": #005272,
+        "interactive-primary-fill-focus": #005272,
+        "interactive-primary-fill-disabled": #D0D5DD,
+        "interactive-primary-border": #007BAB,
+        "interactive-primary-border-hover": #005272,
+        "interactive-primary-border-focus": #99DBF4,
+        "interactive-primary-border-disabled": #D0D5DD,
+        "interactive-primary-icon": #FFFFFF,
+        "interactive-primary-icon-hover": #FFFFFF,
+        "interactive-primary-icon-focus": #FFFFFF,
+        "interactive-primary-icon-disabled": #667085,
+        "interactive-primary-text": #FFFFFF,
+        "interactive-primary-text-hover": #FFFFFF,
+        "interactive-primary-text-focus": #FFFFFF,
+        "interactive-primary-text-disabled": #667085,
+        "interactive-secondary-fill": transparent,
+        "interactive-secondary-fill-hover": #005272,
+        "interactive-secondary-fill-focus": #005272,
+        "interactive-secondary-fill-disabled": #D0D5DD,
+        "interactive-secondary-border": #007BAB,
+        "interactive-secondary-border-hover": #005272,
+        "interactive-secondary-border-focus": #99DBF4,
+        "interactive-secondary-border-disabled": #D0D5DD,
+        "interactive-secondary-icon": #002939,
+        "interactive-secondary-icon-hover": #FFFFFF,
+        "interactive-secondary-icon-focus": #FFFFFF,
+        "interactive-secondary-icon-disabled": #667085,
+        "interactive-secondary-text": #002939,
+        "interactive-secondary-text-hover": #FFFFFF,
+        "interactive-secondary-text-focus": #FFFFFF,
+        "interactive-secondary-text-disabled": #667085,
+        "interactive-tertiary-fill": transparent,
+        "interactive-tertiary-fill-hover": transparent,
+        "interactive-tertiary-fill-focus": transparent,
+        "interactive-tertiary-fill-disabled": transparent,
+        "interactive-tertiary-border": transparent,
+        "interactive-tertiary-border-hover": transparent,
+        "interactive-tertiary-border-focus": #99DBF4,
+        "interactive-tertiary-border-disabled": transparent,
+        "interactive-tertiary-icon": #007BAB,
+        "interactive-tertiary-icon-hover": #002939,
+        "interactive-tertiary-icon-focus": #002939,
+        "interactive-tertiary-icon-disabled": #667085,
+        "interactive-tertiary-text": #005272,
+        "interactive-tertiary-text-hover": #002939,
+        "interactive-tertiary-text-focus": #002939,
+        "interactive-tertiary-text-disabled": #667085,
+        "interactive-accent-fill": #CCEDFA,
+        "component-main-nav-fill": transparent,
+        "component-main-nav-fill-hover": transparent,
+        "component-main-nav-fill-disabled": transparent,
+        "component-main-nav-border": transparent,
+        "component-main-nav-border-hover": #167091,
+        "component-main-nav-border-disabled": #D0D5DD,
+        "component-main-nav-icon": #167091,
+        "component-main-nav-icon-hover": #167091,
+        "component-main-nav-icon-disabled": #667085,
+        "component-main-nav-text": #167091,
+        "component-main-nav-text-hover": #167091,
+        "component-main-nav-text-disabled": #667085
+      )
+    )
+  ),
+  "typography": (
+    "primary": (
+      "name": "Open Sans",
+      "src": ((
+        "url": "https://fonts.gstatic.com/s/opensans/v43/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-mu0SC55I.woff2",
+        "format": "woff2"
+      )),
+      "fallbacks": ("Arial", "sans-serif"),
+      "variants": ((
+        "regular": 400,
+        "src": ((
+          "url": "https://fonts.gstatic.com/s/opensans/v43/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-mu0SC55I.woff2",
+          "format": "woff2"
+        ))
+      ), (
+        "medium": 600,
+        "src": ((
+          "url": "https://fonts.gstatic.com/s/opensans/v43/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-mu0SC55I.woff2",
+          "format": "woff2"
+        ))
+      ), (
+        "bold": 700,
+        "src": ((
+          "url": "https://fonts.gstatic.com/s/opensans/v43/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-mu0SC55I",
+          "format": "woff2"
+        ))
+      ))
+    )
+  ),
+  "grid": (
+    "columns": (
+      "sm": 6,
+      "md": 12,
+      "lg": 12,
+      "xl": 12
+    ),
+    "gap": (
+      "sm": 24px,
+      "md": 24px,
+      "lg": 32px,
+      "xl": 32px
+    )
+  ),
+  "container": (
+    "sm": none,
+    "md": none,
+    "lg": none,
+    "xl": none,
+    "xxl": 1600px
+  ),
+  "spacing": (
+    "1": 8px,
+    "2": 16px,
+    "3": 24px,
+    "4": 32px,
+    "5": 40px,
+    "6": 48px,
+    "7": 56px,
+    "8": 64px,
+    "9": 72px,
+    "10": 80px,
+    "11": 88px,
+    "12": 96px,
+    "13": 104px,
+    "14": 128px,
+    "15": 160px,
+    "16": 192px,
+    "17": 224px,
+    "18": 256px,
+    "half": 4px
+  ),
+  "corners": (
+    "4": 4px,
+    "8": 8px,
+    "16": 16px,
+    "none": 0px
+  ),
+  "elevation": (
+    "sharp-sm": "0px 4px 4px 0px rgba(29, 33, 48, 0.02), 0px 3px 3px 0px rgba(29, 33, 48, 0.04), 0px 1px 1px 0px rgba(29, 33, 48, 0.06), 0px 1px 1px 0px rgba(29, 33, 48, 0.08), 0px 0px 0px 0px rgba(29, 33, 48, 0.10)",
+    "sharp-md": "0px 8px 8px 0px rgba(29, 33, 48, 0.02), 0px 5px 5px 0px rgba(29, 33, 48, 0.04), 0px 3px 3px 0px rgba(29, 33, 48, 0.06), 0px 1px 1px 0px rgba(29, 33, 48, 0.08), 0px 0px 0px 0px rgba(29, 33, 48, 0.10)",
+    "sharp-lg": "0px 16px 16px 0px rgba(29, 33, 48, 0.02), 0px 10px 10px 0px rgba(29, 33, 48, 0.04), 0px 6px 6px 0px rgba(29, 33, 48, 0.06), 0px 3px 3px 0px rgba(29, 33, 48, 0.08), 0px 1px 1px 0px rgba(29, 33, 48, 0.10)",
+    "sharp-xl": "0px 32px 32px 0px rgba(29, 33, 48, 0.02), 0px 20px 20px 0px rgba(29, 33, 48, 0.04), 0px 12px 12px 0px rgba(29, 33, 48, 0.06), 0px 5px 5px 0px rgba(29, 33, 48, 0.08), 0px 1px 1px 0px rgba(29, 33, 48, 0.10)",
+    "smooth-sm": "0px 0px 0px 0px rgba(29, 33, 48, 0.10), 0px 3px 3px 0px rgba(29, 33, 48, 0.08), 0px 1px 1px 0px rgba(29, 33, 48, 0.06), 0px 1px 1px 0px rgba(29, 33, 48, 0.04), 0px 4px 4px 0px rgba(29, 33, 48, 0.02)",
+    "smooth-md": " 0px 8px 8px 0px rgba(29, 33, 48, 0.10), 0px 5px 5px 0px rgba(29, 33, 48, 0.08), 0px 3px 3px 0px rgba(29, 33, 48, 0.06), 0px 1px 1px 0px rgba(29, 33, 48, 0.04), 0px 0px 0px 0px rgba(29, 33, 48, 0.02)",
+    "smooth-lg": "0px 16px 16px 0px rgba(29, 33, 48, 0.10), 0px 10px 10px 0px rgba(29, 33, 48, 0.08), 0px 6px 6px 0px rgba(29, 33, 48, 0.06), 0px 3px 3px 0px rgba(29, 33, 48, 0.04), 0px 1px 1px 0px rgba(29, 33, 48, 0.02)",
+    "smooth-xl": "0px 32px 32px 0px rgba(29, 33, 48, 0.10), 0px 20px 20px 0px rgba(29, 33, 48, 0.08), 0px 12px 12px 0px rgba(29, 33, 48, 0.06), 0px 5px 5px 0px rgba(29, 33, 48, 0.04), 0px 1px 1px 0px rgba(29, 33, 48, 0.02)"
+  ),
+  "breakpoints": (
+    "sm": 576px,
+    "md": 768px,
+    "lg": 1024px,
+    "xl": 1280px,
+    "xxl": 1600px
+  ),
+  "ratios": (
+    "16-9": "16/9",
+    "16-5": "16/5",
+    "4-3": "4/3",
+    "3-4": "3/4",
+    "1-1": "1/1"
+  ),
+  "z-index": (
+    "negative": -1,
+    "basic": 1,
+    "lowest": 5,
+    "low": 25,
+    "intermediate": 50,
+    "high": 75,
+    "important": 100
+  ),
+  "motion": (
+    "durations": (
+      "productive": (
+        "xs": 150,
+        "sm": 250,
+        "md": 350,
+        "lg": 450,
+        "xl": 550,
+        "xxl": 650
+      ),
+      "expressive": (
+        "xs": 300,
+        "sm": 500,
+        "md": 700,
+        "lg": 900,
+        "xl": 1100,
+        "xxl": 1300
+      )
+    ),
+    "easings": (
+      "direct": (
+        "direct-curve": (0.1, 0.25, 0.25, 1)
+      ),
+      "indirect": (
+        "enter-curve": (0.2, 0.6, 0.25, 1),
+        "exit-curve": (0.65, 0, 0.75, 0),
+        "standard-curve": (0.5, 0, 0, 1),
+        "linear-curve": (0, 0, 1, 1)
+      )
+    ),
+    "delays": (
+      "productive": (
+        "xs": 30,
+        "sm": 50,
+        "md": 70,
+        "lg": 90,
+        "xl": 110,
+        "xxl": 130
+      ),
+      "expressive": (
+        "xs": 60,
+        "sm": 100,
+        "md": 140,
+        "lg": 180,
+        "xl": 220,
+        "xxl": 260
+      )
+    )
+  )
+);

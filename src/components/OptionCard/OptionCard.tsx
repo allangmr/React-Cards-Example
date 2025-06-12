@@ -42,7 +42,7 @@ function OptionCard({
   
   return (
     <div 
-      className={`${styles.optionCard} ${styles[option.imageType]} ${isSelected ? styles.selected : ''}`}
+      className={`${styles['option-card']} ${styles[`option-card-${option.imageType}`]} ${isSelected ? styles['option-card-selected'] : ''}`}
       data-selected={isSelected}
       data-option-id={option.id}
       data-select-type={selectType}
@@ -50,7 +50,7 @@ function OptionCard({
       role="button"
       tabIndex={0}
     >
-      <div className={styles.input}>
+      <div className={styles['option-card-input']}>
         <input
           type={selectType}
           id={inputId}
@@ -79,30 +79,29 @@ function OptionCard({
         </div>
       </div>
       
-      <div className={`${styles.image} ${styles[option.imageType]}`}>
+      <div className={`${styles['option-card-image']} ${styles[`option-card-image-${option.imageType}`]}`}>
         <img 
           src={option.image} 
           alt={option.title} 
         />
       </div>
       
-      <div className={styles.content}>
+      <div className={styles['option-card-content']}>
         {tag && (
-          <div className={styles.tag}>
+          <div className={styles['option-card-tag']}>
             {tag}
           </div>
         )}
         <label 
           htmlFor={inputId}
-          className={styles.title}
+          className={styles['option-card-title']}
         >
           {option.title}
         </label>
+        <p className={styles['option-card-description']}>
+          {option.description}
+        </p>
       </div>
-      
-      <p className={styles.description}>
-        {option.description}
-      </p>
     </div>
   );
 }

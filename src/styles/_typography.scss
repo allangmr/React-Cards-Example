@@ -1,0 +1,7 @@
+@use 'sass:map';
+@use 'theme' as theme;
+
+// Función para obtener propiedades de tipografía
+@function get($property) {
+  @return map.get(theme.$theme, 'typography', 'primary', $property);
+} 

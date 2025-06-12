@@ -1,0 +1,47 @@
+@use 'sass:map';
+@use 'theme' as theme;
+
+// Función para obtener colores del tema
+@function color($token-name) {
+  @return map.get(theme.$theme, 'colors', 'tokens', 'default', $token-name);
+}
+
+// Función para obtener colores primitivos
+@function primitive($color-name) {
+  @return map.get(theme.$theme, 'colors', 'primitive', $color-name);
+}
+
+// Función para obtener colores con opacidad
+@function opacity($opacity-name) {
+  @return map.get(theme.$theme, 'colors', 'opacity', $opacity-name);
+}
+
+// Función para obtener espaciado
+@function spacing($size) {
+  @return map.get(theme.$theme, 'spacing', $size);
+}
+
+// Función para obtener border-radius
+@function border-radius($size) {
+  @return map.get(theme.$theme, 'corners', $size);
+}
+
+// Función para obtener elevación/sombras
+@function elevation($type) {
+  @return map.get(theme.$theme, 'elevation', $type);
+}
+
+// Función para obtener z-index
+@function z-index($level) {
+  @return map.get(theme.$theme, 'z-index', $level);
+}
+
+// Función para obtener tipografía
+@function font($property) {
+  @return map.get(theme.$theme, 'typography', 'primary', $property);
+}
+
+// Función para obtener breakpoints
+@function breakpoint($size) {
+  @return map.get(theme.$theme, 'breakpoints', $size);
+} 

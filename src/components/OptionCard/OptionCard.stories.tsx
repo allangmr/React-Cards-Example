@@ -71,6 +71,7 @@ export const RadioButton: Story = {
     option: sampleOptionCard,
     isSelected: false,
     selectType: 'radio',
+    tag: "MOST POPULAR"
   },
   parameters: {
     docs: {

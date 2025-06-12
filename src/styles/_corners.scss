@@ -1,0 +1,7 @@
+@use 'sass:map';
+@use 'theme' as theme;
+
+// Función para obtener border-radius
+@function border-radius($size) {
+  @return map.get(theme.$theme, 'corners', $size);
+} 

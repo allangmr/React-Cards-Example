@@ -1,0 +1,7 @@
+@use 'sass:map';
+@use 'theme' as theme;
+
+// Función para obtener z-index
+@function z-index($level) {
+  @return map.get(theme.$theme, 'z-index', $level);
+} 

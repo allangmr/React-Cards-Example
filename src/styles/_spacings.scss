@@ -1,0 +1,7 @@
+@use 'sass:map';
+@use 'theme' as theme;
+
+// Función para obtener espaciado
+@function size($size) {
+  @return map.get(theme.$theme, 'spacing', $size);
+} 

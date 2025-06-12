@@ -1,0 +1,17 @@
+@use 'sass:map';
+@use 'theme' as theme;
+
+// Función para obtener tokens de colores
+@function token($token-name) {
+  @return map.get(theme.$theme, 'colors', 'tokens', 'default', $token-name);
+}
+
+// Función para obtener colores primitivos
+@function primitive($color-name) {
+  @return map.get(theme.$theme, 'colors', 'primitive', $color-name);
+}
+
+// Función para obtener colores con opacidad
+@function opacity($opacity-name) {
+  @return map.get(theme.$theme, 'colors', 'opacity', $opacity-name);
+} 

@@ -1,0 +1,7 @@
+@use 'sass:map';
+@use 'theme' as theme;
+
+// Función para obtener elevación/sombras
+@function shadow($type) {
+  @return map.get(theme.$theme, 'elevation', $type);
+} 

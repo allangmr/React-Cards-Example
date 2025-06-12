@@ -1,4 +1,4 @@
-@use '../../styles/mixins' as mixins;
+@use '../../styles/breakpoints' as breakpoints;
 @use '../../styles/colors' as colors;
 @use '../../styles/corners' as corners;
 @use '../../styles/spacings' as spacing;
@@ -100,7 +100,6 @@
 
 .option-card-title {
   color: colors.token('text-primary');
-  font-family: typography.get('name'), sans-serif;
   font-size: 13px;
   font-style: normal;
   font-weight: 600;
@@ -116,7 +115,6 @@
 .option-card-description {
   display: block;
   color: colors.token('text-secondary');
-  font-family: typography.get('name'), sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
@@ -137,7 +135,6 @@
   border-radius: corners.border-radius('4');
   background: colors.token('background-accent-1');
   color: colors.token('text-inverted');
-  font-family: typography.get('name'), sans-serif;
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -154,7 +151,7 @@
   gap: spacing.size('half');
 }
 
-@include mixins.media-query(lg, min) {
+@include breakpoints.media-query(lg, min) {
   .option-card {
     display: grid;
     grid-template-columns: auto 1fr;
@@ -272,7 +269,6 @@
     overflow: hidden;
     color: colors.token('text-secondary');
     text-overflow: ellipsis;
-    font-family: typography.get('name'), sans-serif;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;

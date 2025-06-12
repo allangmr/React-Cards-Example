@@ -81,10 +81,7 @@ const securityOptions: Option[] = [
 ];
 
 const OptionCardDemo: React.FC = () => {
-  // Estado para selección simple (radio) - solo una opción
   const [selectedLock, setSelectedLock] = useState<string>('');
-  
-  // Estado para selección múltiple (checkbox) - múltiples opciones
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [selectedSecurity, setSelectedSecurity] = useState<string[]>([]);
 
@@ -122,7 +119,6 @@ const OptionCardDemo: React.FC = () => {
     }
   };
 
-  // Función para limpiar selecciones
   const clearAllSelections = () => {
     setSelectedLock('');
     setSelectedOptions([]);
@@ -144,7 +140,6 @@ const OptionCardDemo: React.FC = () => {
         </button>
       </div>
 
-      {/* Sección de Cerraduras (Radio - Solo una opción) */}
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>
           🔐 Choose Your Lock Type 
@@ -166,7 +161,6 @@ const OptionCardDemo: React.FC = () => {
         </div>
       </section>
 
-      {/* Sección de Optiones (Checkbox - Múltiples opciones) */}
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>
           🏗️ Choose Options 
@@ -190,7 +184,6 @@ const OptionCardDemo: React.FC = () => {
         </div>
       </section>
 
-      {/* Sección de Seguridad (Checkbox - Múltiples opciones) */}
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>
           🛡️ Security Features 
@@ -214,7 +207,6 @@ const OptionCardDemo: React.FC = () => {
         </div>
       </section>
 
-      {/* Resumen de Configuración */}
       <section className={styles.summary}>
         <h2 className={styles.sectionTitle}>📋 Configuration Summary</h2>
         <div className={styles.summaryContent}>

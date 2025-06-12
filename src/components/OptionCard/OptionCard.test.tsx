@@ -151,7 +151,6 @@ describe('OptionCard', () => {
 
     const card = screen.getByTestId('option-card');
     expect(card).toHaveAttribute('class');
-    // Verificamos que el card se renderiza correctamente
     expect(card).toBeInTheDocument();
   });
 

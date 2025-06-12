@@ -1,0 +1,17 @@
+@use 'variables' as *;
+
+// Mixin para media queries - compatible con Figma
+@mixin media-query($breakpoint, $type: min) {
+  @if $breakpoint == lg and $type == min {
+    @media (min-width: $breakpoint-lg) { @content; }
+  }
+  @if $breakpoint == md and $type == min {
+    @media (min-width: $breakpoint-md) { @content; }
+  }
+  @if $breakpoint == sm and $type == min {
+    @media (min-width: $breakpoint-sm) { @content; }
+  }
+  @if $breakpoint == xl and $type == min {
+    @media (min-width: $breakpoint-xl) { @content; }
+  }
+} 

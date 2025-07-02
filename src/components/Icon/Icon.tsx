@@ -1,11 +1,20 @@
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 
-import * as icons from "../../assets/icons";
-import { spacing } from "../../utils/spacing";
+const Radio = lazy(() => import("../../assets/icons/Radio").then(module => ({ default: module.Radio })));
+const CheckRadio = lazy(() => import("../../assets/icons/CheckRadio").then(module => ({ default: module.CheckRadio })));
+const CheckCircle = lazy(() => import("../../assets/icons/CheckCircle").then(module => ({ default: module.CheckCircle })));
+
+const icons = {
+	Radio,
+	CheckRadio,
+	CheckCircle,
+};
+
+type AvailableIcons = keyof typeof icons;
 
 export interface IconProps extends React.SVGProps<SVGElement> {
 	/** Icon name */
-	name: icons.AvailableIcons;
+	name: AvailableIcons;
 	/** Icon title */
 	title?: string;
 	/** Icon title tag ID */
@@ -71,8 +80,8 @@ export function Icon({ name, title, titleId, color, width, height, size, ...prop
 	const styles = {
 		...props.style,
 		color: `var(--icon-color, ${color ?? "currentcolor"})`,
-		width: `var(--icon-width, var(--icon-size, ${setSizeProperty(width ?? size)}))`,
-		height: `var(--icon-height, var(--icon-size, ${setSizeProperty(height ?? size)}))`
+		width: `var(--icon-width, var(--icon-size, ${width ?? size})`,
+		height: `var(--icon-height, var(--icon-size, ${height ?? size})`
 	};
 
 	return (
@@ -88,7 +97,7 @@ export function Icon({ name, title, titleId, color, width, height, size, ...prop
  * @returns The property string
  */
 function setSizeProperty(property: number | string | undefined): string {
-	if (!property) return spacing("2");
+	if (!property) return '24px';
 
 	return typeof property === "number" ? `${property}px` : property;
 }

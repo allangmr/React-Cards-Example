@@ -1,20 +1,12 @@
 import React from 'react';
 import styles from './OptionCard.module.scss';
-import Icon from '../Icon';
-
-interface Option {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  imageType: 'rounded' | 'square' | 'wide';
-}
+import Icon from '../Icon/Icon';
+import type { OptionItem } from '../../types/Step';
 
 export interface OptionCardProps {
-  option: Option;
+  option: OptionItem;
   isSelected: boolean;
   selectType: 'radio' | 'checkbox';
-  tag?: string;
 }
 
 /**
@@ -31,8 +23,7 @@ function getIconName(selectType: 'radio' | 'checkbox', isSelected: boolean): 'Ra
 function OptionCard({
   option,
   isSelected,
-  selectType,
-  tag
+  selectType
 }: OptionCardProps) {
   if (!option) {
     return null;
@@ -87,9 +78,9 @@ function OptionCard({
       </div>
       
       <div className={styles['option-card-content']}>
-        {tag && (
+        {option.tag && (
           <div className={styles['option-card-tag']}>
-            {tag}
+            {option.tag}
           </div>
         )}
         <label 
@@ -98,10 +89,11 @@ function OptionCard({
         >
           {option.title}
         </label>
-        <p className={styles['option-card-description']}>
-          {option.description}
-        </p>
       </div>
+      
+      <p className={styles['option-card-description']}>
+        {option.description}
+      </p>
     </div>
   );
 }

@@ -1,0 +1,70 @@
+@use '../../styles/variables' as *;
+
+.door-configurator-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: $background-light;
+
+  &__header {
+    background-color: $white;
+    border-bottom: 1px solid $border-color;
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  &__stepper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  &__content {
+    flex: 1;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding-bottom: 120px;
+  }
+
+  &__footer {
+    // StepNavigation component handles its own positioning (fixed)
+  }
+
+  @media (max-width: 768px) {
+    &__stepper {
+      padding: 0 1rem;
+    }
+
+    &__content {
+      padding: 1rem;
+      padding-bottom: 100px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__stepper {
+      padding: 0 0.5rem;
+    }
+
+    &__content {
+      padding: 0.5rem;
+      padding-bottom: 90px;
+    }
+  }
+}
+
+// Fade-in animation for content
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+} 

@@ -1,0 +1,269 @@
+@use '../../styles/variables' as *;
+
+.stepper {
+  width: 100%;
+  padding: 2rem 0;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  &__step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    min-width: 120px;
+    z-index: 2;
+
+    &--clickable {
+      cursor: pointer;
+
+      &:hover .stepper__step-indicator {
+        transform: scale(1.05);
+      }
+    }
+
+    &--active {
+      .stepper__step-indicator {
+        background-color: $primary-color;
+        color: $white;
+      }
+
+      .stepper__step-name {
+        color: $primary-color;
+        font-weight: 600;
+      }
+    }
+
+    &--completed {
+      .stepper__step-indicator {
+        background-color: $success-color;
+        color: $white;
+      }
+
+      .stepper__step-name {
+        color: $success-color;
+        font-weight: 500;
+      }
+    }
+  }
+
+  &__step-indicator {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: $background-light;
+    color: $text-light;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1rem;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    position: relative;
+
+    .stepper__step--active & {
+      border-color: $primary-color;
+    }
+
+    .stepper__step--completed & {
+      border-color: $success-color;
+    }
+  }
+
+  &__step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__check-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  &__step-label {
+    margin-top: 0.75rem;
+    text-align: center;
+  }
+
+  &__step-name {
+    font-size: 0.9rem;
+    color: $text-light;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  &__connector {
+    flex: 1;
+    height: 2px;
+    background-color: $border-color;
+    margin: 0 1rem;
+    position: relative;
+    z-index: 1;
+    transition: background-color 0.3s ease;
+
+    &--completed {
+      background-color: $success-color;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem 0;
+
+    &__container {
+      max-width: 100%;
+      padding: 0 1rem;
+    }
+
+    &__step {
+      min-width: 80px;
+    }
+
+    &__step-indicator {
+      width: 40px;
+      height: 40px;
+      font-size: 0.875rem;
+    }
+
+    &__check-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    &__step-name {
+      font-size: 0.8rem;
+    }
+
+    &__connector {
+      margin: 0 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &__step {
+      min-width: 60px;
+    }
+
+    &__step-label {
+      margin-top: 0.5rem;
+    }
+
+    &__step-name {
+      font-size: 0.75rem;
+      line-height: 1.2;
+    }
+
+    &__connector {
+      margin: 0 0.25rem;
+    }
+  }
+
+  // Accessibility
+  &__step--clickable {
+    &:focus {
+      outline: 2px solid $primary-color;
+      outline-offset: 4px;
+      border-radius: 8px;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $primary-color;
+      outline-offset: 4px;
+    }
+  }
+
+  // Animation for step transitions
+  &__step-indicator {
+    animation: stepPulse 0.3s ease-out;
+  }
+
+  &__step--active &__step-indicator {
+    animation: stepActivate 0.4s ease-out;
+  }
+
+  &__navigation {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding: 0 1rem;
+  }
+
+  &__nav-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: $border-radius-md;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 150px;
+    text-align: center;
+
+    &--previous {
+      background-color: $white;
+      color: $text-dark;
+      border-color: $border-color-dark;
+
+      &:hover, &:focus {
+        background-color: $background-light;
+        outline: none;
+      }
+    }
+
+    &--next {
+      background-color: $primary-color;
+      color: $white;
+
+      &:hover, &:focus {
+        background-color: darken($primary-color, 10%);
+        outline: none;
+      }
+
+      &:disabled {
+        background-color: $background-light;
+        cursor: not-allowed;
+        color: $text-light;
+        border-color: $border-color;
+      }
+    }
+  }
+}
+
+// Keyframe animations
+@keyframes stepPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes stepActivate {
+  0% {
+    transform: scale(0.9);
+    box-shadow: 0 0 0 rgba($primary-color, 0);
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 4px 20px rgba($primary-color, 0.4);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+  }
+} 

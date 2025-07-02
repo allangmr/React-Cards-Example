@@ -1,118 +1,113 @@
-import React, { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks/redux';
-import {
-  setCurrentStep,
-  nextStep,
-  previousStep,
-  toggleOptionSelection,
-  setStepConfigs,
-  resetConfigurator,
-} from '../../store/configuratorSlice';
-import { mockStepConfigs } from '../../utils/mockData';
-import StepMenu from '../StepMenu';
-import StepNavigation from '../StepNavigation';
-import OptionCard from '../OptionCard';
+import React from 'react';
 import './DoorConfigurator.scss';
+import DoorConfiguratorLayout from '../DoorConfiguratorLayout/DoorConfiguratorLayout';
+import { useSelector } from 'react-redux';
+import { selectCurrentStep } from '../../store/selectors/doorConfiguratorSelectors';
 
 const DoorConfigurator: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const {
-    currentStep,
-    steps,
-    stepConfigs,
-    selections,
-  } = useAppSelector((state) => state.configurator);
+  const currentStep = useSelector(selectCurrentStep);
 
-  // Inicializar configuraciones al montar el componente
-  useEffect(() => {
-    dispatch(setStepConfigs(mockStepConfigs));
-  }, [dispatch]);
-
-  const currentStepConfig = stepConfigs.find(config => config.id === currentStep);
-  const currentSelection = selections.find(selection => selection.stepId === currentStep);
-
-  const handleStepClick = (stepId: number) => {
-    dispatch(setCurrentStep(stepId));
+  const handleStepChange = (stepIndex: number) => {
+    console.log('Step changed to:', stepIndex);
+    // Additional logic for step changes can be added here
   };
 
-  const handleOptionSelect = (materialId: string) => {
-    if (currentStepConfig) {
-      dispatch(toggleOptionSelection({
-        stepId: currentStep,
-        materialId,
-        isMultiSelect: currentStepConfig.isMultiSelect,
-      }));
+  const handleComplete = () => {
+    console.log('Door configuration completed!');
+    alert('Door configuration completed! Your custom door is ready to add to cart.');
+  };
+
+  const renderStepContent = () => {
+    if (!currentStep) {
+      return <div>Loading...</div>;
+    }
+
+    switch (currentStep.id) {
+      case 'type':
+        return (
+          <div className="door-configurator__step-content">
+            <h2>Select Door Type</h2>
+            <p>Choose the type of door you want to configure.</p>
+            
+            {currentStep.availableOptions.map((option) => (
+              <div key={option.id} className="door-configurator__option-group">
+                <h3>{option.title}</h3>
+                {option.subTitle && <p>{option.subTitle}</p>}
+                
+                <div className="door-configurator__items">
+                  {option.availableItems.map((item) => (
+                    <div 
+                      key={item.id}
+                      className={`door-configurator__item ${item.isSelected ? 'selected' : ''}`}
+                    >
+                      <img src={item.imageUrl} alt={item.label} />
+                      <h4>{item.label}</h4>
+                      <p>{item.description}</p>
+                      {item.isMostPopular && (
+                        <span className="door-configurator__popular-tag">
+                          {item.tag.label}
+                        </span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        );
+
+      case 'material':
+        return (
+          <div className="door-configurator__step-content">
+            <h2>Select Material</h2>
+            <p>Choose the material for your door.</p>
+            <div className="door-configurator__placeholder">
+              Material selection options will be displayed here.
+            </div>
+          </div>
+        );
+
+      case 'finish':
+        return (
+          <div className="door-configurator__step-content">
+            <h2>Select Finish</h2>
+            <p>Choose the finish for your door.</p>
+            <div className="door-configurator__placeholder">
+              Finish selection options will be displayed here.
+            </div>
+          </div>
+        );
+
+      case 'hardware':
+        return (
+          <div className="door-configurator__step-content">
+            <h2>Select Hardware</h2>
+            <p>Choose the hardware for your door.</p>
+            <div className="door-configurator__placeholder">
+              Hardware selection options will be displayed here.
+            </div>
+          </div>
+        );
+
+      default:
+        return (
+          <div className="door-configurator__step-content">
+            <h2>Unknown Step</h2>
+            <p>This step is not configured yet.</p>
+          </div>
+        );
     }
   };
 
-  const handleNext = () => {
-    dispatch(nextStep());
-  };
-
-  const handlePrevious = () => {
-    dispatch(previousStep());
-  };
-
-  const handleReset = () => {
-    dispatch(resetConfigurator());
-  };
-
-  const handleFinish = () => {
-    alert('¡Configuración completada! En una implementación real, aquí se procesaría la orden.');
-  };
-
-  const canGoNext = currentSelection && currentSelection.selectedOptionIds.length > 0;
-  const canGoPrevious = currentStep > 1;
-
   return (
     <div className="door-configurator">
-      <StepMenu
-        steps={steps}
-        currentStep={currentStep}
-        onStepClick={handleStepClick}
-      />
-
-      <main className="door-configurator__main">
-        <div className="door-configurator__content">
-          {currentStepConfig && (
-            <>
-              <header className="door-configurator__header">
-                <h1 className="door-configurator__title">
-                  {currentStepConfig.title}
-                </h1>
-                <p className="door-configurator__description">
-                  {currentStepConfig.description}
-                </p>
-              </header>
-
-              <div className="door-configurator__materials">
-                {currentStepConfig.options.map((option) => (
-                  <OptionCard
-                    key={option.id}
-                    option={option}
-                    isSelected={
-                      currentSelection?.selectedOptionIds.includes(option.id) || false
-                    }
-                    selectType={currentStepConfig.isMultiSelect ? 'checkbox' : 'radio'}
-                    onSelect={handleOptionSelect}
-                  />
-                ))}
-              </div>
-            </>
-          )}
-        </div>
-      </main>
-
-      <StepNavigation
-        currentStep={currentStep}
-        totalSteps={steps.length}
-        canGoNext={!!canGoNext}
-        canGoPrevious={canGoPrevious}
-        onNext={handleNext}
-        onPrevious={handlePrevious}
-        onReset={handleReset}
-        onFinish={handleFinish}
-      />
+      <DoorConfiguratorLayout
+        onStepChange={handleStepChange}
+        onComplete={handleComplete}
+        showStepper={true}
+      >
+        {renderStepContent()}
+      </DoorConfiguratorLayout>
     </div>
   );
 };

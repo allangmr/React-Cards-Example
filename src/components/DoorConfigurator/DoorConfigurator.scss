@@ -1,117 +1,196 @@
 @use '../../styles/variables' as *;
-@use '../../styles/mixins' as *;
 
 .door-configurator {
-  min-height: 100vh;
-  background: $background-light;
+  width: 100%;
+  height: 100%;
 
-  &__main {
-    margin-left: $sidebar-width;
-    min-height: 100vh;
-    padding-bottom: $step-navigation-height;
-  }
-
-  &__content {
-    padding: $spacing-xl;
-    max-width: 1200px;
+  &__step-content {
+    max-width: 100%;
     margin: 0 auto;
-  }
 
-  &__header {
-    margin-bottom: $spacing-xxl;
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: $text-dark;
+      text-align: center;
+    }
+
+    p {
+      font-size: 1.1rem;
+      color: $text-light;
     text-align: center;
+      margin-bottom: 2rem;
+      line-height: 1.6;
+    }
   }
 
-  &__title {
-    font-size: $font-size-xxxl;
-    font-weight: 700;
+  &__option-group {
+    margin-bottom: 3rem;
+
+    h3 {
+      font-size: 1.5rem;
     color: $text-dark;
-    margin: 0 0 $spacing-md 0;
+      margin-bottom: 0.5rem;
   }
 
-  &__description {
-    font-size: $font-size-lg;
+    p {
+      font-size: 1rem;
     color: $text-light;
-    margin: 0;
-    max-width: 600px;
-    margin: 0 auto;
-    line-height: 1.6;
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
   }
 
-  &__materials {
+  &__items {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: $spacing-xl;
-    margin-top: $spacing-xxl;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
   }
 
-  // Responsivo
-  @include responsive(md) {
-    &__content {
-      padding: $spacing-lg;
+  &__item {
+    background: $white;
+    border: 2px solid $border-color;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:hover {
+      border-color: $primary-color;
+      transform: translateY(-2px);
     }
 
-    &__materials {
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: $spacing-lg;
-    }
-
-    &__title {
-      font-size: $font-size-xxl;
-    }
-
-    &__description {
-      font-size: $font-size-base;
-    }
-  }
-
-  // Para pantallas pequeñas
-  @media (max-width: $breakpoint-md) {
-    &__main {
-      margin-left: 0;
-    }
-
-    &__content {
-      padding: $spacing-md;
-    }
-
-    &__materials {
-      grid-template-columns: 1fr;
-      gap: $spacing-md;
-    }
-
-    &__header {
-      margin-bottom: $spacing-xl;
-    }
-
-    &__title {
-      font-size: $font-size-xl;
-    }
-
-    &__description {
-      font-size: $font-size-sm;
-    }
-  }
-
-  // Animaciones
-  &__materials {
-    .option-card {
-      animation: fadeInUp 0.6s ease-out forwards;
-      opacity: 0;
-      transform: translateY(20px);
-
-      @for $i from 1 through 10 {
-        &:nth-child(#{$i}) {
-          animation-delay: #{($i - 1) * 0.1}s;
-        }
+    &.selected {
+      border-color: $primary-color;
+      background: $background-light;
+      
+      &::after {
+        content: '✓';
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 24px;
+        height: 24px;
+        background: $primary-color;
+        color: $white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: bold;
       }
     }
+
+    img {
+      width: 100%;
+      max-width: 200px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    h4 {
+      font-size: 1.2rem;
+      color: $text-dark;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    p {
+      font-size: 0.9rem;
+      color: $text-light;
+      margin: 0;
+      text-align: center;
+      line-height: 1.4;
+    }
+    }
+
+  &__popular-tag {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: $success-color;
+    color: $white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    }
+
+  &__placeholder {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: $background-light;
+    border-radius: 12px;
+    border: 2px dashed $border-color;
+    color: $text-light;
+    font-size: 1.1rem;
+    margin-top: 2rem;
+    }
+
+  @media (max-width: 768px) {
+    &__step-content {
+      h2 {
+        font-size: 1.75rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+
+    &__items {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    &__item {
+      padding: 1rem;
+
+      img {
+        height: 120px;
+    }
+
+      h4 {
+        font-size: 1.1rem;
+      }
+
+      p {
+        font-size: 0.85rem;
+      }
+    }
+
+    &__placeholder {
+      padding: 2rem 1rem;
+      font-size: 1rem;
+    }
   }
 
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
+  @media (max-width: 480px) {
+    &__step-content {
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+
+    &__option-group {
+      margin-bottom: 2rem;
+
+      h3 {
+        font-size: 1.3rem;
+        }
+      }
+
+    &__item {
+      img {
+        height: 100px;
+      }
     }
   }
 } 
